@@ -1,10 +1,7 @@
 import "./globals.css";
-import ClientProvider from "@/components/ClientProvider";
 import Header from "@/components/Header";
-export default function RootLayout(
-    {children,}:
-    {children: React.ReactNode;}
-)
+import AuthCheck from "@/components/AuthCheck";
+export default function RootLayout({children}:{children: React.ReactNode;})
 {
     return (
         <html lang="en">
@@ -15,7 +12,9 @@ export default function RootLayout(
             <link rel="icon" href="/favicon.ico" />
         </head>
         <body>
-            <Header />
+            <AuthCheck />
+
+            {/*<Header />*/}
             {children}
         </body>
         </html>

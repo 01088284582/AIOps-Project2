@@ -2,10 +2,11 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import GoogleLogoutButton from "./GoogleLogoutButton";
-import {googleStatus} from "@/components/GoogleSession";
+import {googleStatus} from "@/lib/GoogleSession";
 
 function Header() {
     const [status, setStatus] = useState<{ authenticated: boolean; email: string | null; name: string | null } | null>(null);
+    const loginUrl = process.env.BACKEND_URL+"/auth/login-spa";
 
     useEffect(() => {
         const fetchStatus = () => {
@@ -35,7 +36,7 @@ function Header() {
                         <GoogleLogoutButton />
                     </div>
                 ) : (
-                    <Link href="https://localhost:8000/auth/login-spa">login</Link>
+                    <Link href={loginUrl}>login</Link>
                 )}
             </header>
             <div className="mb-5 text-xs text-gray-500">

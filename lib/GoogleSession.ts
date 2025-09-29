@@ -1,16 +1,22 @@
+"use client"
+
 export async function googleLogout() {
-    const res = await fetch('https://localhost:8000/auth/logout', {
-        method: 'POST'
+    const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + '/auth/logout', {
+        method: 'POST',
+        credentials: 'include',
     })
         .then((response) => response.json())
-        .then((data) => console.log("logout data : ", data));
+        .then((data) => {
+            console.log("logout data : ", data);
+            window.location.href = process.env.NEXT_PUBLIC_FRONTEND_URL + "/login";
+        });
 
 }
 
 export function googleStatus() {
-    return fetch('https://localhost:8000/auth/status', {
+    return fetch(process.env.NEXT_PUBLIC_BACKEND_URL + '/auth/status', {
         method: 'GET',
-        credentials: 'include',
+        credentials: 'include'
     })
         .then((res) => res.json())
         .catch((error) => {
@@ -18,26 +24,20 @@ export function googleStatus() {
             return null;
         })
         .then((data) => {
-            console.log("status data : ", data);
-            if (typeof window !== 'undefined') {
-                void fetch('/api/status-log', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data),
-                });
-            }
+            //console.log("googleStatus() > status data : ", data);
             return data;
         });
 }
 
+/*
 export async function googleExchange(code: string | null) {
     const param = {
         code: code,
-        redirect_uri: process.env.GOOGLE_REDIRECT_URI
+        redirect_uri: process.env.NEXT_PUBLIC_GOOGLE_REDIRECT_URI
     }
     console.log("exchange param : ", param);
 
-    const res = await fetch('https://localhost:8000/auth/exchange', {
+    const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + '/auth/exchange', {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         credentials: 'include',
@@ -52,3 +52,4 @@ export async function googleExchange(code: string | null) {
 
     return data;
 }
+*/

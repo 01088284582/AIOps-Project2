@@ -1,5 +1,5 @@
 "use client";
-import {googleLogout} from "@/components/GoogleSession";
+import {googleLogout} from "@/lib/GoogleSession";
 function GoogleLogoutButton() {
 
     function logoutConfirm() {

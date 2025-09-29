@@ -1,28 +1,33 @@
 "use client"
-import Link from "next/link";
 import { useEffect, useState } from "react";
-import GoogleLogoutButton from "@/components/GoogleLogoutButton";
-import {googleStatus, googleExchange} from "@/components/GoogleSession";
-import { useSearchParams } from 'next/navigation'
+//import {googleStatus, googleExchange} from "@/components/GoogleSession";
+//import { useSearchParams } from 'next/navigation'
 
 
 export default function Page() {
+    //const searchParams = useSearchParams()
+    //const code = searchParams.get('code');
+    //googleExchange(code);
+
     const [message, setMessage] = useState("code 파라미터가 수신되면 자동으로 토큰 교환을 시도합니다.");
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const code = params.get("code");
+    const state = params.get("state");
 
     if (code) {
       setMessage("Authorization code 수신...");
+        const exchangeUrl = process.env.NEXT_PUBLIC_BACKEND_URL+"/auth/exchange";
 
-      fetch("https://localhost:8000/auth/exchange", {
+        fetch(exchangeUrl, {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           code: code,
-          redirect_uri: "https://localhost:3000/auth/callback", // .env.local에 정의 필요
+          state: state,
+          redirect_uri: process.env.NEXT_PUBLIC_GOOGLE_REDIRECT_URI,
         }),
       })
         .then((res) => {
@@ -33,21 +38,24 @@ export default function Page() {
 
           // URL 정리 (쿼리스트링 제거)
           window.history.replaceState(null, "", window.location.pathname);
+
+          if (typeof window !== 'undefined') {
+              window.dispatchEvent(new Event('google-session-updated'));
+          }
+          window.location.href = process.env.NEXT_PUBLIC_FRONTEND_URL + "/";
         })
         .catch((err) => {
           setMessage(err.message);
         });
+    }
+    else {
+        window.location.href = process.env.NEXT_PUBLIC_FRONTEND_URL + "/";
     }
   }, []);
 
     return (
     <div>
       <p>{message}</p>
-
-       <h1>callback</h1>
-
-            <GoogleLogoutButton />
-            <Link href="https://console.cloud.google.com">move GCP</Link>
     </div>
   );
 }
