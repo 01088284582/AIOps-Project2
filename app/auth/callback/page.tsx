@@ -16,6 +16,11 @@ export default function Page() {
     const code = params.get("code");
     const state = params.get("state");
 
+    console.log("PARAM !!!: ", params)
+    console.log("CODE !!!: ", code)
+    console.log("STATE !!!: ", states)
+    console.log(process.env.NEXT_PUBLIC_GOOGLE_REDIRECT_URI)
+
     if (code) {
       setMessage("Authorization code 수신...");
         const exchangeUrl = process.env.NEXT_PUBLIC_BACKEND_URL+"/auth/exchange";
