@@ -15,7 +15,6 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 # Next.js 앱을 프로덕션 모드로 빌드합니다.
-# 이 단계에서 .next 폴더가 생성됩니다.
 RUN npm run build
 
 # Stage 3: 프로덕션 이미지 생성 및 실행 (Create Production Image and Run)
@@ -26,8 +25,7 @@ WORKDIR /app
 # 프로덕션 환경임을 명시합니다.
 ENV NODE_ENV=production
 
-# Next.js의 'standalone' 출력 기능을 사용하기 위해 필요한 파일만 복사합니다.
-# 이렇게 하면 이미지 크기가 획기적으로 줄어듭니다.
+# 'standalone' 빌드 결과물만 복사하여 이미지 크기를 최소화합니다.
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
