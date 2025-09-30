@@ -1,4 +1,4 @@
-# cloudbuild.yaml (최종 수정본)
+# cloudbuild.yaml (디렉토리 구조 반영 최종 수정본)
 
 steps:
   # 단계 1: Docker 이미지 빌드
@@ -8,11 +8,10 @@ steps:
     - 'build'
     - '-t'
     - 'us-west1-docker.pkg.dev/hyperscale-ai-442809/gnaix-aiops/fe-dev:$SHORT_SHA'
-    # [수정] 빌드 경로를 프론트엔드 소스코드가 있는 디렉토리로 정확히 지정합니다.
-    # 실제 디렉토리 이름이 'frontend'가 아니라면 이 부분을 꼭 수정해주세요!
-    - './frontend'
+    # [수정] 빌드 경로를 '.' (현재 디렉토리)로 변경하여 실제 구조와 일치시킵니다.
+    - '.'
 
-  # 단계 2: Artifact Registry에 이미지 푸시 (백엔드 방식과 통일)
+  # 단계 2: Artifact Registry에 이미지 푸시
 - name: 'gcr.io/cloud-builders/docker'
   id: 'Push'
   waitFor: ['Build']
@@ -33,19 +32,16 @@ steps:
     - 'us-west1-docker.pkg.dev/hyperscale-ai-442809/gnaix-aiops/fe-dev:$SHORT_SHA'
     - '--region'
     - 'us-west1'
-    - '--port=3000' # Next.js 포트 확인
-    # [조정] 프론트엔드 서버에 맞게 리소스 설정을 낮춰 비용을 최적화합니다.
+    - '--port=3000'
     - '--cpu'
     - '1'
     - '--memory'
-    - '1Gi' # 1기가바이트로 조정
-    # [조정] 개발 환경에서는 사용하지 않을 때 비용이 발생하지 않도록 최소 인스턴스를 0으로 설정
+    - '1Gi'
     - '--min-instances'
     - '0'
     - '--platform'
     - 'managed'
     - '--allow-unauthenticated'
-    # 프론트엔드 서비스에 특정 서비스 계정이 필요한 경우에만 이 줄을 사용하세요.
     - '--service-account=gnaix-dev-mlops@hyperscale-ai-442809.iam.gserviceaccount.com'
 
 options:
