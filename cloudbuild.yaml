@@ -1,53 +1,52 @@
-# cloudbuild.yaml
+# cloudbuild.yaml (최종 수정본)
+
 steps:
-  # 1단계: Docker 이미지 빌드
-  - name: 'gcr.io/cloud-builders/docker'
-    id: 'Build'
-    args:
-      - 'build'
-      - '-t'
-      - 'us-west1-docker.pkg.dev/hyperscale-ai-442809/gnaix-aiops/fe-dev:$SHORT_SHA'
-      - '.'
+  # 단계 1: Docker 이미지 빌드
+- name: 'gcr.io/cloud-builders/docker'
+  id: 'Build'
+  args:
+    - 'build'
+    - '-t'
+    - 'us-west1-docker.pkg.dev/hyperscale-ai-442809/gnaix-aiops/fe-dev:$SHORT_SHA'
+    # [수정] 빌드 경로를 프론트엔드 소스코드가 있는 디렉토리로 정확히 지정합니다.
+    # 실제 디렉토리 이름이 'frontend'가 아니라면 이 부분을 꼭 수정해주세요!
+    - './frontend'
 
-  # 2단계: 빌드한 이미지를 Artifact Registry에 푸시
-  # 이 단계는 아래 'images' 섹션에 의해 자동으로 처리됩니다.
-  # 별도의 'docker push' 단계를 추가할 필요가 없습니다.
+  # 단계 2: Artifact Registry에 이미지 푸시 (백엔드 방식과 통일)
+- name: 'gcr.io/cloud-builders/docker'
+  id: 'Push'
+  waitFor: ['Build']
+  args:
+    - 'push'
+    - 'us-west1-docker.pkg.dev/hyperscale-ai-442809/gnaix-aiops/fe-dev:$SHORT_SHA'
 
-  # 3단계: Cloud Run에 새 이미지로 배포
-  # 'gcr.io/google-cloud-sdk/gcloud'는 gcloud CLI 명령어를 실행할 수 있는 도구입니다.
-  - name: 'gcr.io/google-cloud-sdk/gcloud'
-    id: 'Deploy to Cloud Run'
-    args:
-      - 'run'
-      - 'deploy'
-      - 'gnaix-dev-aiops-fe'
-      - '--image'
-      - 'us-west1-docker.pkg.dev/hyperscale-ai-442809/gnaix-aiops/fe-dev:$SHORT_SHA'
-      - '--region'
-      - 'us-west1'
-      - '--port=3000'
-      - '--service-account=gnaix-dev-mlops@hyperscale-ai-442809.iam.gserviceaccount.com' 
-      - '--cpu'               
-      - '2'
-      - '--memory'            
-      - '2Gi'
-      - '--min-instances'    
-      - '1'
-      - '--platform'
-      - 'managed'
-      - '--allow-unauthenticated' # 필요에 따라 '--no-allow-unauthenticated'로 변경
-
-# 빌드가 성공적으로 끝나면 여기에 명시된 이미지를 자동으로 Artifact Registry에 푸시합니다.
-images:
-  - 'us-west1-docker.pkg.dev/hyperscale-ai-442809/gnaix-aiops/fe-dev:$SHORT_SHA'
-
-# 이 파일에서 사용할 변수(Substitution Variables)를 정의합니다.
-# gcloud builds submit 명령어 실행 시 값을 전달할 수 있습니다.
-substitutions:
-  _REGION: 'us-west1' # 서울 리전
-  _REPO_NAME: 'gnaix-aiops' # Artifact Registry 저장소 이름
-  _IMAGE_NAME: 'aiops-fe'
-  _SERVICE_NAME: 'gnaix-dev-aiops-fe' # Cloud Run 서비스 이름
+  # 단계 3: Cloud Run에 배포
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  id: 'Deploy'
+  waitFor: ['Push']
+  entrypoint: gcloud
+  args:
+    - 'run'
+    - 'deploy'
+    - 'gnaix-dev-aiops-fe'
+    - '--image'
+    - 'us-west1-docker.pkg.dev/hyperscale-ai-442809/gnaix-aiops/fe-dev:$SHORT_SHA'
+    - '--region'
+    - 'us-west1'
+    - '--port=3000' # Next.js 포트 확인
+    # [조정] 프론트엔드 서버에 맞게 리소스 설정을 낮춰 비용을 최적화합니다.
+    - '--cpu'
+    - '1'
+    - '--memory'
+    - '1Gi' # 1기가바이트로 조정
+    # [조정] 개발 환경에서는 사용하지 않을 때 비용이 발생하지 않도록 최소 인스턴스를 0으로 설정
+    - '--min-instances'
+    - '0'
+    - '--platform'
+    - 'managed'
+    - '--allow-unauthenticated'
+    # 프론트엔드 서비스에 특정 서비스 계정이 필요한 경우에만 이 줄을 사용하세요.
+    - '--service-account=gnaix-dev-mlops@hyperscale-ai-442809.iam.gserviceaccount.com'
 
 options:
   logging: CLOUD_LOGGING_ONLY
