@@ -18,7 +18,7 @@ export default function Page() {
 
     console.log("PARAM !!!: ", params)
     console.log("CODE !!!: ", code)
-    console.log("STATE !!!: ", states)
+    console.log("STATE !!!: ", state)
     console.log(process.env.NEXT_PUBLIC_GOOGLE_REDIRECT_URI)
 
     if (code) {
