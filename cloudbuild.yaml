@@ -1,13 +1,12 @@
 # cloudbuild.yaml
 steps:
   # 1단계: Docker 이미지 빌드
-  # 'gcr.io/cloud-builders/docker'는 Google이 제공하는 Docker 빌드 도구입니다.
   - name: 'gcr.io/cloud-builders/docker'
     id: 'Build'
     args:
       - 'build'
       - '-t'
-      - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/${_IMAGE_NAME}:$SHORT_SHA'
+      - 'us-west1-docker.pkg.dev/hyperscale-ai-442809/gnaix-aiops/fe-dev:$SHORT_SHA'
       - '.'
 
   # 2단계: 빌드한 이미지를 Artifact Registry에 푸시
@@ -21,26 +20,26 @@ steps:
     args:
       - 'run'
       - 'deploy'
-      - '${_SERVICE_NAME}' # 배포할 Cloud Run 서비스 이름
+      - 'gnaix-dev-aiops-fe'
       - '--image'
-      - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/${_IMAGE_NAME}:$SHORT_SHA'
+      - 'us-west1-docker.pkg.dev/hyperscale-ai-442809/gnaix-aiops/fe-dev:$SHORT_SHA'
       - '--region'
-      - '${_REGION}'
+      - 'us-west1'
       - '--platform'
       - 'managed'
       - '--allow-unauthenticated' # 필요에 따라 '--no-allow-unauthenticated'로 변경
 
 # 빌드가 성공적으로 끝나면 여기에 명시된 이미지를 자동으로 Artifact Registry에 푸시합니다.
 images:
-  - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/${_IMAGE_NAME}:$SHORT_SHA'
+  - 'us-west1-docker.pkg.dev/hyperscale-ai-442809/gnaix-aiops/fe-dev:$SHORT_SHA'
 
 # 이 파일에서 사용할 변수(Substitution Variables)를 정의합니다.
 # gcloud builds submit 명령어 실행 시 값을 전달할 수 있습니다.
 substitutions:
-  _REGION: 'asia-northeast3' # 서울 리전
-  _REPO_NAME: 'my-app-repo' # Artifact Registry 저장소 이름
-  _IMAGE_NAME: 'aiops-react-app'
-  _SERVICE_NAME: 'aiops-react-service' # Cloud Run 서비스 이름
+  _REGION: 'us-west1' # 서울 리전
+  _REPO_NAME: 'gnaix-aiops' # Artifact Registry 저장소 이름
+  _IMAGE_NAME: 'aiops-fe'
+  _SERVICE_NAME: 'gnaix-dev-aiops-fe' # Cloud Run 서비스 이름
 
 options:
   logging: CLOUD_LOGGING_ONLY
