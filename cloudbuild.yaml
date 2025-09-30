@@ -1,14 +1,18 @@
-# cloudbuild.yaml (디렉토리 구조 반영 최종 수정본)
-
 steps:
   # 단계 1: Docker 이미지 빌드
 - name: 'gcr.io/cloud-builders/docker'
   id: 'Build'
   args:
     - 'build'
+    # --build-arg를 사용하여 빌드 시점 환경변수를 Dockerfile에 전달
+    - '--build-arg'
+    - 'NEXT_PUBLIC_GOOGLE_REDIRECT_URI=${_NEXT_PUBLIC_GOOGLE_REDIRECT_URI}'
+    - '--build-arg'
+    - 'NEXT_PUBLIC_FRONTEND_URL=${_NEXT_PUBLIC_FRONTEND_URL}'
+    - '--build-arg'
+    - 'NEXT_PUBLIC_BACKEND_URL=${_NEXT_PUBLIC_BACKEND_URL}'
     - '-t'
     - 'us-west1-docker.pkg.dev/hyperscale-ai-442809/gnaix-aiops/fe-dev:$SHORT_SHA'
-    # [수정] 빌드 경로를 '.' (현재 디렉토리)로 변경하여 실제 구조와 일치시킵니다.
     - '.'
 
   # 단계 2: Artifact Registry에 이미지 푸시
@@ -33,16 +37,21 @@ steps:
     - '--region'
     - 'us-west1'
     - '--port=3000'
-    - '--cpu'
-    - '1'
-    - '--memory'
-    - '1Gi'
-    - '--min-instances'
-    - '0'
-    - '--platform'
-    - 'managed'
+    - '--cpu=1'
+    - '--memory=1Gi'
+    - '--min-instances=0'
+    - '--platform=managed'
     - '--allow-unauthenticated'
     - '--service-account=gnaix-dev-mlops@hyperscale-ai-442809.iam.gserviceaccount.com'
+    # --set-env-vars를 사용하여 런타임 환경변수를 Cloud Run 서비스에 직접 설정
+    - '--set-env-vars'
+    - 'NODE_TLS_REJECT_UNAUTHORIZED=0'
+
+# 빌드 시 사용할 변수들을 정의합니다.
+substitutions:
+  _NEXT_PUBLIC_GOOGLE_REDIRECT_URI: "https://gnaix-dev-aiops-fe-439283128936.us-west1.run.app/auth/callback"
+  _NEXT_PUBLIC_FRONTEND_URL: "https://gnaix-dev-aiops-fe-439283128936.us-west1.run.app"
+  _NEXT_PUBLIC_BACKEND_URL: "https://gnaix-dev-aiops-be-439283128936.us-west1.run.app"
 
 options:
   logging: CLOUD_LOGGING_ONLY
