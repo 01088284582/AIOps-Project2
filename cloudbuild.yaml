@@ -49,9 +49,9 @@ steps:
 
 # 빌드 시 사용할 변수들을 정의합니다.
 substitutions:
-  _NEXT_PUBLIC_GOOGLE_REDIRECT_URI: "https://gnaix-dev-aiops-fe-439283128936.us-west1.run.app/auth/callback"
-  _NEXT_PUBLIC_FRONTEND_URL: "https://gnaix-dev-aiops-fe-439283128936.us-west1.run.app"
-  _NEXT_PUBLIC_BACKEND_URL: "https://gnaix-dev-aiops-be-439283128936.us-west1.run.app"
+  _NEXT_PUBLIC_GOOGLE_REDIRECT_URI: "https://dev-aiops.gnaix.org/auth/callback"
+  _NEXT_PUBLIC_FRONTEND_URL: "https://dev-aiops.gnaix.org"
+  _NEXT_PUBLIC_BACKEND_URL: "https://dev-aiops.gnaix.org/api"
 
 options:
   logging: CLOUD_LOGGING_ONLY
