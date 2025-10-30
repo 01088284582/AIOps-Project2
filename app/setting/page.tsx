@@ -9,7 +9,7 @@ import Header2 from "@/components/Header2";
 
 function SettingPage() {
     const [status, setStatus] = useState<string>('loading');
-    const [jnList, setJnList] = useState([]);
+    const [jnList, setJnList] = useState<any[]>([]);
     const router = useRouter();
 
     useEffect(() => {
@@ -55,7 +55,6 @@ function SettingPage() {
                                     console.log("getNotebookInfo tags : ", data2.tags);
                                     data[i].id = i;
 
-                                    // @ts-ignore
                                     setJnList([...jnList, data[i]]);
                                 })
                                 .catch((error) => {
