@@ -5,6 +5,7 @@ import {useEffect, useState} from "react";
 import SideBar2 from "@/components/SideBar2";
 import {getNotebookInfo, getNotebookList, getPermission} from "@/lib/NotebookAPI";
 import {useRouter} from "next/navigation";
+import Header2 from "@/components/Header2";
 
 function DashboardPage() {
     const [status, setStatus] = useState<string>('loading');
@@ -67,6 +68,7 @@ function DashboardPage() {
                                     data[i].disk_usage = data2.metrics.disk.usage_total;
                                     data[i].disk_tatal = data2.metrics.disk.capacity_total;
 
+                                    //@ts-ignore
                                     setJnList([...jnList, data[i]]);
                                 })
                                 .catch((error) => {
@@ -160,6 +162,7 @@ function DashboardPage() {
                 </div>
             ) : status === 'finish' ? (
                 <div className="container">
+                    <Header2/>
                     <section className="container-body">
                         <div className="title-area">
                             <div className="contents-breadcrumb">
@@ -311,9 +314,8 @@ function DashboardPage() {
                 </div>
             ) : (
                 <>
-                    <div id="lnb-container"></div>
                     <div className="container">
-                        <div id="header-container"></div>
+                        <Header2/>
                         <section className="container-body">
                             <div className="title-area">
                                 <div className="contents-breadcrumb">
