@@ -143,7 +143,7 @@ function DashboardPage() {
                                     <h2 className="modal__title">권한 확인이 필요해요.</h2>
                                     <div className="modal__description" data-node-id="450:25123">
                                         <p>이 기능을 사용하려면</p>
-                                        <p>'Vertex AI Workbench 사용 권한'이 필요합니다.</p>
+                                        <p>Vertex AI Workbench 사용 권한이 필요합니다.</p>
                                         <p>담당 팀에 권한을 신청해주세요!</p>
                                     </div>
                                 </div>

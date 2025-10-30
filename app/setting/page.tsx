@@ -80,20 +80,131 @@ function SettingPage() {
 
     return(
         <>
+            <div className="modal modal--type-02 hide" data-name="AIOps_04_인스턴스 생성" data-node-id="450:21049">
+                <div className="modal__overlay" data-name="popup" data-node-id="450:21255">
+                    <div className="modal__backdrop" data-name="dim" data-node-id="450:21256"></div>
+
+                    <div className="modal__container modal__container--size-lg" data-name="Modal_02"
+                         data-node-id="450:21257">
+                        <div className="modal__popup-top" data-name="PopupTop" data-node-id="450:21258">
+                            <h2 className="modal__title modal__title--lg"
+                                data-node-id="reflect:I450:21258;395:12205">타이틀 영역</h2>
+                            <button className="modal__close-btn modal__close-btn--absolute" data-name="icon_X"
+                                    data-node-id="reflect:I450:21258;395:12154" type="button" aria-label="닫기">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="1.5"
+                                          stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div className="modal__popup-body" data-name="PopupBody" data-node-id="450:21259">
+                            <div className="modal__popup-body-content" data-name="content" data-node-id="450:21260">
+                                <div className="modal__resource-card" data-name="con" data-node-id="450:21261">
+                                    <div className="modal__info-box" data-name="info" data-node-id="450:21265">
+                                        <div className="modal__info-header" data-name="이름" data-node-id="450:21266">
+                                            <span className="modal__info-title">EG - Tesla - T4</span>
+                                        </div>
+                                        <div className="modal__info-content" data-node-id="450:21268">
+                                            <div className="modal__info-column" data-name="td" data-node-id="450:21269">
+                                                <div className="modal__info-label" data-name="1"
+                                                     data-node-id="450:21270">
+                                                    <span className="modal__info-label-text">CPU</span>
+                                                </div>
+                                                <div className="modal__info-value" data-name="2"
+                                                     data-node-id="450:21272">
+                                                    <div className="modal__info-value-content" data-node-id="450:21273">
+                                                        <span className="modal__info-value-number">4</span>
+                                                        <span className="modal__info-value-unit">CPU</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div className="modal__info-divider" data-name="Divider"
+                                                 data-node-id="450:21278"></div>
+
+                                            <div className="modal__info-column" data-name="td" data-node-id="450:21279">
+                                                <div className="modal__info-label" data-name="1"
+                                                     data-node-id="450:21280">
+                                                    <span className="modal__info-label-text">Memory</span>
+                                                </div>
+                                                <div className="modal__info-value" data-name="2"
+                                                     data-node-id="450:21282">
+                                                    <div className="modal__info-value-content" data-node-id="450:21283">
+                                                        <span className="modal__info-value-number">6.5</span>
+                                                        <span className="modal__info-value-unit">GB</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div className="modal__info-divider" data-name="Divider"
+                                                 data-node-id="450:21288"></div>
+
+                                            <div className="modal__info-column" data-name="td" data-node-id="450:21289">
+                                                <div className="modal__info-label" data-name="1"
+                                                     data-node-id="450:21290">
+                                                    <span className="modal__info-label-text">Data Disk</span>
+                                                </div>
+                                                <div className="modal__info-value" data-name="2"
+                                                     data-node-id="450:21292">
+                                                    <div className="modal__info-value-content" data-node-id="450:21293">
+                                                        <span className="modal__info-value-number">150</span>
+                                                        <span className="modal__info-value-unit">GB</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="modal__input-section" data-name="con" data-node-id="450:21314">
+                                    <div className="modal__input-wrapper" data-node-id="450:21317">
+                                        <div className="input-wrapper" data-name="input" data-node-id="450:21323">
+                                            <input type="text" className="input-field" placeholder="인스턴스명을 입력해 주세요."/>
+                                        </div>
+                                        <div className="modal__input-hint" data-name="txt" data-node-id="450:21324">
+                                            <p className="modal__input-hint-text" data-node-id="450:21325">영문 최대 00자,
+                                                소문자, 숫자, 하이픈(-)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="modal__popup-bottom" data-name="PopupBottom" data-node-id="reflect:391:12411">
+                            <div className="modal__popup-bottom-content" data-name="content"
+                                 data-node-id="reflect:391:12192">
+                                <div className="modal__divider" data-name="Divider"
+                                     data-node-id="reflect:391:12037"></div>
+                                <div className="modal__actions modal__actions--split" data-name="CTA_Area"
+                                     data-node-id="reflect:391:12218">
+                                    <button className="btn btn-secondary btn-lg" type="button">취소</button>
+                                    <button className="btn btn-primary btn-lg" type="button">확인</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
             <SideBar2 menu="setting"/>
             {status === 'loading' ? (
                 <div className="modal modal--type-01" data-name="AIOps_02_Dashboards_02(권한확인)" data-node-id="450:25083">
                     <div className="modal__overlay" data-name="popup" data-node-id="450:25115">
                         <div className="modal__backdrop" data-name="dim" data-node-id="450:25116"></div>
 
-                        <div className="modal__container modal__container--size-sm" data-name="Modal" data-node-id="450:25117">
+                        <div className="modal__container modal__container--size-sm" data-name="Modal"
+                             data-node-id="450:25117">
 
                             <div className="modal__loading-image">
-                                <img src="../../images/image_loading.png" alt="Loading" />
+                                <img src="../../images/image_loading.png" alt="Loading"/>
                             </div>
 
                             <div className="modal__loading-image modal__loading-image--original">
-                                <img src="../../images/loading_2.gif" alt="Loading animation" className="loading-img-original" />
+                                <img src="../../images/loading_2.gif" alt="Loading animation"
+                                     className="loading-img-original"/>
                             </div>
 
                             <div className="modal__content" data-name="con" data-node-id="450:25120">
@@ -109,43 +220,48 @@ function SettingPage() {
                     </div>
                 </div>
             ) : status === 'no_permission' ? (
-                    <div className="modal modal--type-01" data-name="AIOps_02_Dashboards_02(권한확인)" data-node-id="450:25083">
+                <div className="modal modal--type-01" data-name="AIOps_02_Dashboards_02(권한확인)" data-node-id="450:25083">
 
-                        <div className="modal__overlay" data-name="popup" data-node-id="450:25115">
-                            <div className="modal__backdrop" data-name="dim" data-node-id="450:25116"></div>
+                    <div className="modal__overlay" data-name="popup" data-node-id="450:25115">
+                        <div className="modal__backdrop" data-name="dim" data-node-id="450:25116"></div>
 
-                            <div className="modal__container modal__container--size-sm" data-name="Modal" data-node-id="450:25117">
+                        <div className="modal__container modal__container--size-sm" data-name="Modal"
+                             data-node-id="450:25117">
 
-                                <div className="modal__close-wrapper" data-name="close" data-node-id="450:25118">
-                                    <button className="modal__close-btn" data-name="icon_close" data-node-id="450:25119" type="button" aria-label="닫기"
-                                            onClick={() => router.push('/')}>
-                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg>
-                                    </button>
+                            <div className="modal__close-wrapper" data-name="close" data-node-id="450:25118">
+                                <button className="modal__close-btn" data-name="icon_close" data-node-id="450:25119"
+                                        type="button" aria-label="닫기"
+                                        onClick={() => router.push('/')}>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="1.5"
+                                              stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <div className="modal__content" data-name="con" data-node-id="450:25120">
+
+                                <div className="modal__title-section" data-name="text" data-node-id="450:25121">
+                                    <h2 className="modal__title">권한 확인이 필요해요.</h2>
+                                    <div className="modal__description" data-node-id="450:25123">
+                                        <p>이 기능을 사용하려면</p>
+                                        <p>Vertex AI Workbench 사용 권한이 필요합니다.</p>
+                                        <p>담당 팀에 권한을 신청해주세요!</p>
+                                    </div>
                                 </div>
 
-                                <div className="modal__content" data-name="con" data-node-id="450:25120">
-
-                                    <div className="modal__title-section" data-name="text" data-node-id="450:25121">
-                                        <h2 className="modal__title">권한 확인이 필요해요.</h2>
-                                        <div className="modal__description" data-node-id="450:25123">
-                                            <p>이 기능을 사용하려면</p>
-                                            <p>'Vertex AI Workbench 사용 권한'이 필요합니다.</p>
-                                            <p>담당 팀에 권한을 신청해주세요!</p>
-                                        </div>
-                                    </div>
-
-                                    <div className="modal__actions" data-name="btn" data-node-id="450:25125">
-                                        <button className="btn btn-primary btn-md" data-name="BTN" data-node-id="reflect:450:25127" type="button"
-                                                onClick={() => router.push('/')}>
-                                            <span className="btn-text">확인</span>
-                                        </button>
-                                    </div>
+                                <div className="modal__actions" data-name="btn" data-node-id="450:25125">
+                                    <button className="btn btn-primary btn-md" data-name="BTN"
+                                            data-node-id="reflect:450:25127" type="button"
+                                            onClick={() => router.push('/')}>
+                                        <span className="btn-text">확인</span>
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
             ) : status === 'finish' ? (
                 <div className="container">
                     <section className="container-body">
