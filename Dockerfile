@@ -1,7 +1,7 @@
 # Dockerfile (환경변수 주입 기능 추가)
 
 # Stage 1: 의존성 설치
-FROM node:18-alpine AS deps
+FROM node:20-alpine AS deps
 WORKDIR /app
 
 # [npm 버전 업데이트]
@@ -32,7 +32,7 @@ ENV NEXT_PUBLIC_BACKEND_URL=$NEXT_PUBLIC_BACKEND_URL
 RUN npm run build
 
 # Stage 3: 프로덕션 이미지 생성 및 실행
-FROM node:18-alpine AS runner
+FROM node:20-alpine AS runner
 WORKDIR /app
 ENV NODE_ENV=production
 COPY --from=builder /app/public ./public
