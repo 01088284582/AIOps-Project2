@@ -5,8 +5,7 @@ FROM node:18-alpine AS deps
 WORKDIR /app
 
 # [npm 버전 업데이트]
-# npm을 최신 버전(11.6.2)으로 업데이트합니다.
-RUN npm install -g npm@11.6.2
+RUN npm install -g npm@10.9.3
 
 COPY package.json package-lock.json ./
 RUN npm ci
@@ -16,8 +15,7 @@ FROM node:18-alpine AS builder
 WORKDIR /app
 
 # [npm 버전 업데이트]
-# npm을 최신 버전(11.6.2)으로 업데이트합니다.
-RUN npm install -g npm@11.6.2
+RUN npm install -g npm@10.9.3
 
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
