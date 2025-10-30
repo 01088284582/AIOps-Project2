@@ -1,0 +1,83 @@
+@charset "UTF-8";
+
+/* Badge Status Component Styles */
+/* Source: Figma Design System - Badge Status Component */
+
+/* ============================================ */
+/* Badge Status Base */
+/* ============================================ */
+.badge-status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-8) var(--spacing-8);
+    height: var(--spacing-20);
+    border-radius: var(--radius-20);
+    font-family: var(--font-family-pretendard);
+    font-size: var(--font-size-10);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-16);
+    letter-spacing: 0;
+    white-space: nowrap;
+    box-sizing: border-box;
+    min-width: fit-content;
+    background-color: transparent;
+}
+
+/* ============================================ */
+/* Badge Status Variants */
+/* ============================================ */
+
+/* Stopped Status */
+.badge-status-stopped {
+    border: 1px solid var(--orange-500);
+    color: var(--orange-500);
+}
+
+/* Active Status */
+.badge-status-active {
+    border: 1px solid var(--indigo-500);
+    color: var(--indigo-300);
+}
+
+/* Provisioning Status */
+.badge-status-provisioning {
+    border: 1px solid var(--teal-400);
+    color: var(--teal-400);
+}
+
+/* ============================================ */
+/* Badge Status Demo Styles */
+/* ============================================ */
+.component-container {
+    padding: 40px;
+    background-color: var(--neutral-900);
+    min-height: 100vh;
+}
+
+.component-container h2 {
+    color: var(--base-white);
+    margin-bottom: 30px;
+    font-size: var(--typography-heading-md-size);
+    font-weight: var(--typography-heading-md-weight);
+}
+
+.badge-group {
+    margin-bottom: 30px;
+}
+
+.badge-group h3 {
+    color: var(--base-white);
+    margin-bottom: 15px;
+    font-size: var(--typography-body-lg-size);
+    font-weight: var(--typography-body-lg-weight-semibold);
+}
+
+.badge-group .badge-status {
+    margin-right: 12px;
+    margin-bottom: 12px;
+}
+
+
+
+

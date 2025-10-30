@@ -1,0 +1,99 @@
+@charset "UTF-8";
+
+/* ============================================ */
+/* Divider Component */
+/* ============================================ */
+
+/* Base Divider */
+.divider {
+    width: 100%;
+    height: 1px;
+    background-color: var(--color-divider-default);
+    flex-shrink: 0;
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Divider for LNB (Left Navigation Bar) */
+.divider--lnb {
+    width: 100%;
+    height: 1px;
+    background-color: var(--color-divider-lnb);
+    flex-shrink: 0;
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Divider with custom spacing */
+.divider--spaced {
+    margin: 16px 0;
+}
+
+.divider--spaced-sm {
+    margin: 8px 0;
+}
+
+.divider--spaced-lg {
+    margin: 24px 0;
+}
+
+/* Divider with custom width */
+.divider--full {
+    width: 100%;
+}
+
+.divider--half {
+    width: 50%;
+}
+
+.divider--quarter {
+    width: 25%;
+}
+
+/* Divider variants */
+.divider--thick {
+    height: 2px;
+}
+
+.divider--thin {
+    height: 0.5px;
+}
+
+/* Divider with opacity */
+.divider--subtle {
+    opacity: 0.5;
+}
+
+.divider--strong {
+    opacity: 1;
+}
+
+/* Responsive divider */
+@media (max-width: 768px) {
+    .divider--responsive {
+        margin: 12px 0;
+    }
+}
+
+/* Divider in different contexts */
+.divider--section {
+    margin: 32px 0;
+    background-color: var(--color-border-primary);
+}
+
+.divider--item {
+    margin: 8px 0;
+    background-color: var(--color-border-secondary);
+}
+
+/* Divider with animation */
+.divider--animated {
+    transition: all 0.3s ease;
+}
+
+.divider--animated:hover {
+    background-color: var(--color-border-focus-ring);
+    height: 2px;
+}

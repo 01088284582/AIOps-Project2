@@ -1,0 +1,202 @@
+@charset "UTF-8";
+
+/* Button Component Styles */
+/* Source: Figma Design System - BTN Component */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-sizing: border-box;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-family-pretendard);
+    color: var(--base-white);
+    white-space: nowrap;
+    transition: background-color 0.2s ease;
+}
+
+/* Size Variants */
+.btn-lg {
+    height: 52px;
+    padding: 0 32px;
+    border-radius: 5px;
+    font-size: var(--typography-body-lg-size);
+    font-weight: var(--typography-body-lg-weight-semibold);
+    line-height: var(--typography-body-lg-line-height);
+    letter-spacing: var(--typography-body-lg-letter-spacing);
+}
+
+.btn-md {
+    height: 38px;
+    padding: 0 28px;
+    border-radius: 5px;
+    font-size: var(--typography-body-md-size);
+    font-weight: var(--typography-body-md-weight-medium);
+    line-height: var(--typography-body-md-line-height);
+    letter-spacing: var(--typography-body-md-letter-spacing);
+}
+
+.btn-sm {
+    height: 28px;
+    padding: 0 14px;
+    border-radius: 3px;
+    font-size: var(--typography-body-sm-size);
+    font-weight: var(--typography-body-sm-weight-regular);
+    line-height: var(--typography-body-sm-line-height);
+    letter-spacing: var(--typography-body-sm-letter-spacing);
+}
+
+/* Primary Button */
+.btn-primary {
+    background-color: var(--color-bg-button-primary);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-bg-button-primary-hover);
+}
+
+.btn-primary:active {
+    background-color: var(--color-bg-button-primary);
+}
+
+/* Secondary Button */
+.btn-secondary {
+    background-color: var(--color-bg-button-secondary);
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-bg-button-secondary-hover);
+}
+
+.btn-secondary:active {
+    background-color: var(--color-bg-button-secondary);
+}
+
+/* Neutral Button */
+.btn-neutral {
+    background-color: var(--color-bg-button-neutral);
+}
+
+.btn-neutral:hover {
+    background-color: var(--color-bg-button-neutral-hover);
+}
+
+.btn-neutral:active {
+    background-color: var(--color-bg-button-neutral);
+}
+
+/* Button Text */
+.btn-text {
+    position: relative;
+    flex-shrink: 0;
+}
+
+/* Login Button - 400px fixed width for login.html */
+.login-submit-btn {
+    width: 400px;
+    height: 52px;
+}
+
+/* Actions Section buttons - 400px width */
+.contents-area-actions .btn {
+    width: 400px;
+    max-width: 400px;
+}
+
+/* Demo Styles */
+.component-container {
+    padding: 40px;
+    background-color: var(--neutral-900);
+    min-height: 100vh;
+}
+
+.component-container h2 {
+    color: var(--base-white);
+    margin-bottom: 30px;
+    font-size: var(--font-size-24);
+}
+
+.button-group {
+    margin-bottom: 30px;
+}
+
+.button-group h3 {
+    color: var(--base-white);
+    margin-bottom: 15px;
+    font-size: var(--font-size-16);
+}
+
+.button-group button {
+    margin-right: 12px;
+    margin-bottom: 12px;
+}
+
+/* ============================================ */
+/* Login Button - Google Login */
+/* ============================================ */
+.btn-login-google {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 400px;
+    height: 48px;
+    padding: 12px 16px;
+    border: 1px solid var(--color-text-tertiary); /* #a1a1a1 */
+    border-radius: 5px;
+    background-color: var(--color-icon-primary); /* #ffffff */
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+.btn-login-google:hover {
+    border-color: var(--color-border-focus-ring); /* #404040 */
+    background-color: var(--color-bg-secondary); /* #fafafa */
+}
+
+.btn-login-google:active {
+    background-color: var(--color-bg-secondary); /* #fafafa */
+}
+
+/* Google Logo Container */
+.btn-login-google__logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.btn-login-google__logo svg {
+    width: 45px;
+    height: 45px;
+    flex-shrink: 0;
+}
+
+.btn-login-google__logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Google Button Text */
+.btn-login-google__text {
+    font-family: var(--font-family-pretendard);
+    font-size: var(--typography-body-lg-size); /* 16px */
+    font-weight: var(--typography-body-lg-weight-semibold); /* 600 */
+    line-height: var(--typography-body-lg-line-height); /* 20px */
+    letter-spacing: var(--typography-body-lg-letter-spacing); /* 0px */
+    color: var(--color-text-primary-d); /* #171717 */
+    white-space: nowrap;
+}
+
+/* Content Wrapper */
+.btn-login-google__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+

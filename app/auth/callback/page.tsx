@@ -16,10 +16,10 @@ export default function Page() {
     const code = params.get("code");
     const state = params.get("state");
 
-    console.log("PARAM !!!: ", params)
-    console.log("CODE !!!: ", code)
-    console.log("STATE !!!: ", state)
-    console.log(process.env.NEXT_PUBLIC_GOOGLE_REDIRECT_URI)
+    //console.log("PARAM !!!: ", params)
+    //console.log("CODE !!!: ", code)
+    //console.log("STATE !!!: ", state)
+    //console.log(process.env.NEXT_PUBLIC_GOOGLE_REDIRECT_URI)
 
     if (code) {
       setMessage("Authorization code 수신...");
@@ -59,8 +59,36 @@ export default function Page() {
   }, []);
 
     return (
-    <div>
-      <p>{message}</p>
-    </div>
+        <>
+            <div>
+              <p>{message}</p>
+            </div>
+            <div className="modal modal--type-01" data-name="AIOps_02_Dashboards_02(권한확인)" data-node-id="450:25083">
+                <div className="modal__overlay" data-name="popup" data-node-id="450:25115">
+                    <div className="modal__backdrop" data-name="dim" data-node-id="450:25116"></div>
+
+                    <div className="modal__container modal__container--size-sm" data-name="Modal" data-node-id="450:25117">
+
+                        <div className="modal__loading-image">
+                            <img src="../../images/image_loading.png" alt="Loading" />
+                        </div>
+
+                        <div className="modal__loading-image modal__loading-image--original">
+                            <img src="../../images/loading_2.gif" alt="Loading animation" className="loading-img-original" />
+                        </div>
+
+                        <div className="modal__content" data-name="con" data-node-id="450:25120">
+                            <div className="modal__title-section" data-name="text" data-node-id="450:25121">
+                                <h2 className="modal__title">로그인 중입니다.</h2>
+                                <div className="modal__description" data-node-id="450:25123">
+                                    <p>잠시만 기다려주세요.</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
   );
 }

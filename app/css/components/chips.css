@@ -1,0 +1,224 @@
+@charset "UTF-8";
+
+/* Chips Component Styles */
+/* Source: Figma Design System - Chips Components */
+
+/* ============================================ */
+/* Chips-01 (Simple Chips) */
+/* ============================================ */
+.chips-01 {
+    background-color: var(--color-bg-neutral-800); /* neutral-800: #262626 - Figma exact */
+    border: 1px solid var(--color-border-primary); /* border-[#313a44]: #313a44 - Figma exact */
+    box-sizing: border-box;
+    display: flex;
+    gap: 10px; /* gap-[10px] - Figma exact */
+    align-items: center;
+    justify-content: center;
+    padding: 8px 20px; /* py-[8px] px-[20px] - Figma exact */
+    position: relative;
+    border-radius: 5px; /* rounded-[5px] - Figma exact */
+    width: 100.667px; /* w-[100.667px] - Figma exact */
+    min-width: 100.667px; /* Ensure minimum width */
+    height: 46px; /* h-[46px] - Figma exact */
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.chips-01:hover {
+    border-color: var(--color-border-focus-ring); /* border-[#4f39f6]: #4f39f6 - Figma exact */
+}
+
+.chips-01-selected {
+    border: 2px solid var(--color-border-focus-ring); /* border-2 border-[#4f39f6]: #4f39f6 - Figma exact */
+}
+
+.chips-01-hover {
+    border-color: var(--color-border-focus-ring);
+}
+
+.chips-text {
+    font-family: var(--font-family-pretendard);
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.3;
+    color: var(--color-text-primary-a); /* text-neutral-50: #fafafa - Figma exact */
+    white-space: nowrap;
+    position: relative;
+    flex-shrink: 0;
+}
+
+/* ============================================ */
+/* Chips-02 (Card Style) */
+/* ============================================ */
+.chips-02 {
+    background-color: var(--color-bg-neutral-800); /* neutral-800: #262626 - Figma exact */
+    border: 1px solid var(--color-border-primary); /* border-neutral-600: #525252 - Figma exact */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 6px; /* gap-[6px] - Figma exact */
+    align-items: center;
+    padding: 24px; /* p-[24px] - Figma exact */
+    position: relative;
+    border-radius: 8px; /* rounded-[8px] - Figma exact */
+    width: 217px; /* w-[217px] - Figma exact */
+    height: 156px; /* h-[156px] - Figma exact */
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.chips-02:hover {
+    border-color: var(--color-border-focus-ring); /* border-[#4f39f6]: #4f39f6 - Figma exact */
+}
+
+.chips-02-hover {
+    border: 1px solid var(--color-border-focus-ring);
+}
+
+.chips-02-selected {
+    border: 2px solid var(--color-border-focus-ring); /* border-2 border-[#4f39f6]: #4f39f6 - Figma exact */
+}
+
+/* Chips-02 Header */
+.chips-02-header {
+    background-color: var(--color-bg-button-secondary); /* bg-[#323659]: #323659 - Figma exact */
+    box-sizing: border-box;
+    display: flex;
+    gap: 8px; /* gap-[8px] - Figma exact */
+    height: 30px; /* h-[30px] - Figma exact */
+    align-items: center;
+    justify-content: center;
+    padding: 0 14px; /* px-[14px] - Figma exact */
+    position: relative;
+    border-radius: 5px; /* rounded-[5px] - Figma exact */
+    width: 100%;
+    flex-shrink: 0;
+}
+
+.chips-02-header-hover {
+    background-color: var(--color-bg-button-secondary);
+}
+
+.chips-02-header-selected {
+    background-color: var(--color-bg-brand); /* bg-[#4f39f6]: #4f39f6 - Figma exact */
+}
+
+.chips-02-title {
+    font-family: var(--font-family-pretendard);
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-semibold);
+    line-height: 16px; /* leading-[16px] - Figma exact */
+    letter-spacing: -0.2px; /* tracking-[-0.2px] - Figma exact */
+    color: var(--color-text-primary-a); /* text-neutral-50: #fafafa - Figma exact */
+    white-space: nowrap;
+    position: relative;
+    flex-shrink: 0;
+}
+
+/* Chips-02 Content */
+.chips-02-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    width: 100%;
+    flex-shrink: 0;
+}
+
+.chips-02-row {
+    border-bottom: 1px solid var(--neutral-800); /* border-[#3f3f3f] - Figma exact */
+    box-sizing: border-box;
+    display: flex;
+    gap: 11px; /* gap-[11px] - Figma exact */
+    height: 36px; /* h-[36px] - Figma exact */
+    align-items: center;
+    position: relative;
+    width: 100%;
+    flex-shrink: 0;
+}
+
+.chips-02-row:last-child {
+    border-bottom: none;
+}
+
+.chips-02-label {
+    display: flex;
+    gap: 10px; /* gap-[10px] - Figma exact */
+    height: 100%;
+    align-items: center;
+    position: relative;
+    width: 80px; /* w-[80px] - Figma exact */
+    flex-shrink: 0;
+}
+
+.chips-02-label p {
+    font-family: var(--font-family-pretendard);
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-regular);
+    line-height: 16px; /* leading-[16px] - Figma exact */
+    letter-spacing: -0.2px; /* tracking-[-0.2px] - Figma exact */
+    color: var(--color-text-disabled); /* text-[#a1a1a1]: #a1a1a1 - Figma exact */
+    white-space: nowrap;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.chips-02-value {
+    display: flex;
+    gap: 10px; /* gap-[10px] - Figma exact */
+    height: 100%;
+    align-items: center;
+    position: relative;
+    width: 80px; /* w-[80px] - Figma exact */
+    flex-shrink: 0;
+}
+
+.chips-02-value p {
+    font-family: var(--font-family-pretendard);
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-semibold);
+    line-height: 16px; /* leading-[16px] - Figma exact */
+    letter-spacing: -0.2px; /* tracking-[-0.2px] - Figma exact */
+    color: var(--color-text-primary-a); /* text-neutral-50: #fafafa - Figma exact */
+    white-space: nowrap;
+    position: relative;
+    flex-shrink: 0;
+}
+
+/* ============================================ */
+/* Demo Styles */
+/* ============================================ */
+.component-container {
+    padding: 40px;
+    background-color: var(--neutral-900);
+    min-height: 100vh;
+}
+
+.component-container h2 {
+    color: var(--base-white);
+    margin-bottom: 30px;
+    font-size: var(--font-size-24);
+}
+
+.chips-group {
+    margin-bottom: 40px;
+}
+
+.chips-group h3 {
+    color: var(--base-white);
+    margin-bottom: 20px;
+    font-size: var(--font-size-16);
+}
+
+.chips-01 {
+    margin-right: 12px;
+}
+
+.chips-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+

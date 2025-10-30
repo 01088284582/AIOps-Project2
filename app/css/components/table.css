@@ -1,0 +1,293 @@
+@charset "UTF-8";
+
+/* Table Component Styles */
+/* Source: Figma Design System */
+
+/* ============================================ */
+/* Table Container */
+/* ============================================ */
+.table {
+    overflow: hidden;
+    width: 100%;
+}
+
+/* ============================================ */
+/* Table Header */
+/* ============================================ */
+.table__header {
+    display: flex;
+    background: var(--color-bg-neutral-800);
+    padding: var(--spacing-16);
+    align-items: center;
+    gap: 0;
+}
+
+.table__header-cell {
+    display: flex;
+    align-items: center;
+    font-family: var(--font-family-pretendard);
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary-a);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.table__header-cell--checkbox {
+    width: 44px;
+    padding-left: var(--spacing-16);
+    padding-right: var(--spacing-10);
+    justify-content: center;
+}
+
+.table__header-cell--name {
+    flex: 1;
+    min-width: 200px;
+    padding: 0 var(--spacing-10);
+    justify-content: center
+}
+
+.table__header-cell--actions {
+    flex: 0 0 auto;
+    display: flex;
+    gap: var(--spacing-8);
+    justify-content: flex-end;
+    padding: 0;
+}
+
+.table__header-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    font-family: var(--font-family-pretendard);
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary-a);
+    white-space: nowrap;
+}
+
+.table__sort-icon {
+    width: 15px;
+    height: 15px;
+    color: var(--color-text-primary-a);
+    fill: none;
+    transition: opacity 0.2s ease;
+}
+
+.table__sort-icon use {
+    color: inherit;
+    fill: none;
+}
+
+.table__header-cell--name:hover .table__sort-icon {
+    opacity: 1;
+}
+
+.table__sort-icon:hover {
+    opacity: 1;
+}
+
+/* ============================================ */
+/* Table Body */
+/* ============================================ */
+.table__body {
+    display: flex;
+    flex-direction: column;
+}
+
+.table__row {
+    display: flex;
+    padding: var(--spacing-16);
+    border-bottom: 1px solid var(--color-divider-default);
+    align-items: center;
+}
+
+.table__row:hover {
+    background: var(--color-bg-hover-lnb);
+}
+
+/* ============================================ */
+/* Table Cell */
+/* ============================================ */
+.table__cell {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-8);
+}
+
+.table__cell--checkbox {
+    width: 44px;
+    justify-content: center;
+}
+
+.table__cell--name {
+    flex: 1;
+    min-width: 200px;
+}
+
+.table__cell--actions {
+    flex: 0 0 auto;
+    display: flex;
+    gap: var(--spacing-8);
+    justify-content: flex-end;
+}
+
+.table__action-item {
+    width: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ============================================ */
+/* Cell Content */
+/* ============================================ */
+.table__cell-text {
+    font-family: var(--font-family-pretendard);
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary-a);
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.table__cell-text:hover {
+    text-decoration: underline;
+}
+
+/* ============================================ */
+/* Action Buttons */
+/* ============================================ */
+.table__action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 16px;
+    border: none;
+    border-radius: var(--radius-5);
+    font-family: var(--font-family-pretendard);
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-medium);
+    color: var(--base-white);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.table__action-btn--start {
+    background: var(--color-bg-button-secondary);
+}
+
+.table__action-btn--start:hover {
+    background: var(--color-bg-button-secondary-hover);
+}
+
+.table__action-btn--stop {
+    background: var(--color-bg-button-secondary);
+}
+
+.table__action-btn--stop:hover {
+    background: var(--color-bg-button-secondary-hover);
+}
+
+.table__action-btn--execute {
+    background: var(--color-bg-button-primary);
+}
+
+.table__action-btn--execute:hover {
+    background: var(--color-bg-button-primary-hover);
+}
+
+.table__action-btn--delete {
+    background: var(--color-bg-button-neutral);
+}
+
+.table__action-btn--delete:hover {
+    background: var(--color-bg-button-neutral-hover);
+}
+
+/* ============================================ */
+/* Checkbox */
+/* ============================================ */
+.table__checkbox {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--neutral-300);
+    border-radius: 2px;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    opacity: 0.38;
+}
+
+.table__checkbox:hover {
+    opacity: 1;
+    border-color: var(--color-text-primary-a);
+}
+
+.table__checkbox--checked {
+    background: var(--color-bg-button-primary);
+    border-color: var(--color-bg-button-primary);
+    opacity: 1;
+}
+
+/* ============================================ */
+/* Pagination */
+/* ============================================ */
+.table__pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-8);
+    padding: var(--spacing-20) var(--spacing-16);
+}
+
+.table__pagination-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: var(--radius-5);
+    background: transparent;
+    color: var(--color-text-tertiary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: var(--font-family-pretendard);
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-regular);
+}
+
+.table__pagination-btn:hover {
+    background: transparent;
+}
+
+.table__pagination-btn--active {
+    background: transparent;
+    color: var(--base-white);
+}
+
+.table__pagination-btn--active:hover {
+    background: transparent;
+}
+
+.table__pagination-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* ============================================ */
+/* Demo Styles */
+/* ============================================ */
+.component-container {
+    padding: var(--spacing-40);
+    background-color: var(--neutral-900);
+    min-height: 100vh;
+}
+
+.component-container h2 {
+    color: var(--base-white);
+    margin-bottom: var(--spacing-30);
+    font-size: var(--font-size-24);
+}

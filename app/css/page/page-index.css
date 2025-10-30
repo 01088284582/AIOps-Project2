@@ -1,0 +1,6 @@
+@charset "UTF-8";
+
+/* Page styles 폴더에 있는 css파일들 모아 한번에 html에 연결하기 위해 있는 파일 */
+@import url('../page/index.css');
+@import url('../page/list.css');
+

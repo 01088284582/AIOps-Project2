@@ -1,0 +1,215 @@
+@charset "UTF-8";
+
+/* Search Component Styles */
+/* Source: Figma Design System - Search Component */
+/* Updated based on node-id: 548-5605 */
+
+/* ============================================ */
+/* Search Wrapper - Base Styles */
+/* ============================================ */
+.search-wrapper {
+    background-color: var(--search-bg-default);
+    border: 1px solid var(--search-border-default);
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: var(--search-gap);
+    padding: var(--search-padding-expand);
+    position: relative;
+    border-radius: var(--search-border-radius);
+    width: var(--search-width-expand);
+    height: var(--search-height);
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+}
+
+/* ============================================ */
+/* Search Field - Text Input */
+/* ============================================ */
+.search-field {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: var(--font-family-pretendard);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: -0.2px;
+    color: var(--color-text-primary-a); /* #fafafa */
+    min-width: 0;
+    padding: 0;
+}
+
+.search-field::placeholder {
+    color: var(--search-text-default);
+    font-weight: 400;
+}
+
+/* ============================================ */
+/* Search Icon Container */
+/* ============================================ */
+.search-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    color: var(--search-icon-color-default);
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.search-icon:hover {
+    color: var(--search-icon-color-hover);
+}
+
+.search-icon img {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* ============================================ */
+/* Search States */
+/* ============================================ */
+
+/* Expand - Default State */
+.search-wrapper.search-expand-default {
+    border-color: var(--search-border-default);
+    border-radius: var(--search-border-radius);
+}
+
+.search-wrapper.search-expand-default .search-field {
+    color: var(--search-text-default);
+    font-weight: 400;
+}
+
+/* Expand - Typing State */
+.search-wrapper.search-expand-typing {
+    border-color: var(--search-border-default);
+    border-radius: var(--search-border-radius);
+}
+
+.search-wrapper.search-expand-typing .search-field {
+    color: var(--search-text-typing);
+    font-weight: 500;
+}
+
+/* Expand - Done State */
+.search-wrapper.search-expand-done {
+    border-color: var(--search-border-default);
+    border-radius: var(--search-border-radius);
+}
+
+.search-wrapper.search-expand-done .search-field {
+    color: var(--search-text-done);
+    font-weight: 500;
+}
+
+/* Expand - Disabled State */
+.search-wrapper.search-expand-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    border-radius: var(--search-border-radius);
+}
+
+.search-wrapper.search-expand-disabled .search-field {
+    cursor: not-allowed;
+    color: var(--search-text-disabled);
+    font-weight: 400;
+}
+
+/* Shorten (Icon Only) - Default State */
+.search-wrapper.search-shorten-default {
+    width: var(--search-width-shorten);
+    padding: var(--search-padding-shorten);
+    background-color: transparent;
+    border: none;
+    border-radius: var(--search-border-radius);
+}
+
+.search-wrapper.search-shorten-default .search-field {
+    display: none;
+}
+
+.search-wrapper.search-shorten-default .search-icon {
+    color: var(--search-shorten-icon-default);
+}
+
+/* Shorten (Icon Only) - Hover State */
+.search-wrapper.search-shorten-hover {
+    width: var(--search-width-shorten);
+    padding: var(--search-padding-shorten);
+    background-color: var(--search-shorten-bg-hover);
+    border: none;
+    border-radius: var(--search-border-radius);
+}
+
+.search-wrapper.search-shorten-hover .search-field {
+    display: none;
+}
+
+.search-wrapper.search-shorten-hover .search-icon {
+    color: var(--search-shorten-icon-default);
+}
+
+/* Shorten (Icon Only) - Disabled State */
+.search-wrapper.search-shorten-disabled {
+    width: var(--search-width-shorten);
+    padding: var(--search-padding-shorten);
+    opacity: 0.5;
+    background-color: transparent;
+    border: none;
+    cursor: not-allowed;
+    border-radius: var(--search-border-radius);
+}
+
+.search-wrapper.search-shorten-disabled .search-field {
+    display: none;
+    cursor: not-allowed;
+}
+
+.search-wrapper.search-shorten-disabled .search-icon {
+    color: var(--search-shorten-icon-disabled);
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Focus State */
+.search-wrapper:focus-within {
+    border-color: var(--color-border-focus-ring);
+    outline: none;
+}
+
+/* ============================================ */
+/* Search Container & Groups */
+/* ============================================ */
+.search-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.search-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+/* ============================================ */
+/* Search Label */
+/* ============================================ */
+.search-label {
+    display: block;
+    font-family: var(--font-family-pretendard);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: -0.2px;
+    color: var(--color-text-primary-a);
+    margin-bottom: 8px;
+}

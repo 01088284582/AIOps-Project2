@@ -1,211 +1,159 @@
-import GoogleLogoutButton from "@/components/GoogleLogoutButton";
+'use client';
+
+import {getPermission} from "@/lib/NotebookAPI";
+import {useState, useEffect} from "react";
+import Image from "next/image";
+import SideBar2 from "@/components/SideBar2";
+import {useRouter} from "next/navigation";
 
 export default function Home() {
+    //const [status, setStatus] = useState<{ authenticated: boolean; email: string | null; name: string | null } | null>(null);
+    const [status, setStatus] = useState<string>('loading');
+    const router = useRouter();
 
+    useEffect(() => {
+        const checkPermission = () => {
+            getPermission()
+                .then((data) => {
+                    //console.log("Home page getPermission data : ", data.has_permission);
+                    if(data.has_permission) {
+                        router.push('/dashboard');
+                    }
+                    else{
+                        setStatus('no_permission');
+                    }
+                })
+                .catch((error) => {
+                    setStatus('error');
+                    console.error("getPermission error", error)
+                });
+        };
+        checkPermission();
+
+    }, []);
 
     return (
-      <main className="relative h-screen overflow-hidden bg-gray-100 dark:bg-gray-800 rounded-2xl">
-          <div className="flex items-start justify-between">
-              {/* LNB */}
-              <div className="relative hidden h-screen my-4 ml-4 shadow-lg lg:block w-80">
-                  <div className="h-full bg-white rounded-2xl dark:bg-gray-700">
-                      <div className="flex items-center justify-center pt-6">
-                          <svg width="35" height="30" viewBox="0 0 256 366" version="1.1"
-                               preserveAspectRatio="xMidYMid">
-                              <g>
-                                  <path
-                                      d="M0,60.8538006 C0,27.245261 27.245304,0 60.8542121,0 L117.027019,0 L255.996549,0 L255.996549,86.5999776 C255.996549,103.404155 242.374096,117.027222 225.569919,117.027222 L145.80812,117.027222 C130.003299,117.277829 117.242615,130.060011 117.027019,145.872817 L117.027019,335.28252 C117.027019,352.087312 103.404567,365.709764 86.5997749,365.709764 L0,365.709764 L0,117.027222 L0,60.8538006 Z"
-                                      fill="#001B38">
-                                  </path>
-                                  <circle fill="url(#linearGradient-1)"
-                                          transform="translate(147.013244, 147.014675) rotate(90.000000) translate(-147.013244, -147.014675) "
-                                          cx="147.013244" cy="147.014675" r="78.9933938">
-                                  </circle>
-                                  <circle fill="url(#linearGradient-1)" opacity="0.5"
-                                          transform="translate(147.013244, 147.014675) rotate(90.000000) translate(-147.013244, -147.014675) "
-                                          cx="147.013244" cy="147.014675" r="78.9933938">
-                                  </circle>
-                              </g>
-                          </svg>
-                      </div>
-                      <nav className="mt-6">
-                          <div>
-                              <a className="flex items-center justify-start w-full p-4 my-2 font-thin text-blue-500 uppercase transition-colors duration-200 border-r-4 border-blue-500 bg-gradient-to-r from-white to-blue-100 dark:from-gray-700 dark:to-gray-800"
-                                 href="#">
-                                <span className="text-left">
-                                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 2048 1792"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M1070 1178l306-564h-654l-306 564h654zm722-282q0 182-71 348t-191 286-286 191-348 71-348-71-286-191-191-286-71-348 71-348 191-286 286-191 348-71 348 71 286 191 191 286 71 348z">
-                                        </path>
-                                    </svg>
-                                </span>
-                                <span className="mx-4 text-sm font-normal">Dashboard</span>
-                              </a>
-                              <a className="flex items-center justify-start w-full p-4 my-2 font-thin text-gray-500 uppercase transition-colors duration-200 dark:text-gray-200 hover:text-blue-500"
-                                 href="#">
-                                <span className="text-left">
-                                    <svg width="20" fill="currentColor" height="20" className="w-5 h-5"
-                                         viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M1088 1256v240q0 16-12 28t-28 12h-240q-16 0-28-12t-12-28v-240q0-16 12-28t28-12h240q16 0 28 12t12 28zm316-600q0 54-15.5 101t-35 76.5-55 59.5-57.5 43.5-61 35.5q-41 23-68.5 65t-27.5 67q0 17-12 32.5t-28 15.5h-240q-15 0-25.5-18.5t-10.5-37.5v-45q0-83 65-156.5t143-108.5q59-27 84-56t25-76q0-42-46.5-74t-107.5-32q-65 0-108 29-35 25-107 115-13 16-31 16-12 0-25-8l-164-125q-13-10-15.5-25t5.5-28q160-266 464-266 80 0 161 31t146 83 106 127.5 41 158.5z">
-                                        </path>
-                                    </svg>
-                                </span>
-                                  <span className="mx-4 text-sm font-normal">Settings</span>
-                              </a>
-                              <a className="flex items-center justify-start w-full p-4 my-2 font-thin text-gray-500 uppercase transition-colors duration-200 dark:text-gray-200 hover:text-blue-500"
-                                 href="#">
-                                <span className="text-left">
-                                    <svg width="20" height="20" fill="currentColor" className="m-auto"
-                                         viewBox="0 0 2048 1792" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M1024 1131q0-64-9-117.5t-29.5-103-60.5-78-97-28.5q-6 4-30 18t-37.5 21.5-35.5 17.5-43 14.5-42 4.5-42-4.5-43-14.5-35.5-17.5-37.5-21.5-30-18q-57 0-97 28.5t-60.5 78-29.5 103-9 117.5 37 106.5 91 42.5h512q54 0 91-42.5t37-106.5zm-157-520q0-94-66.5-160.5t-160.5-66.5-160.5 66.5-66.5 160.5 66.5 160.5 160.5 66.5 160.5-66.5 66.5-160.5zm925 509v-64q0-14-9-23t-23-9h-576q-14 0-23 9t-9 23v64q0 14 9 23t23 9h576q14 0 23-9t9-23zm0-260v-56q0-15-10.5-25.5t-25.5-10.5h-568q-15 0-25.5 10.5t-10.5 25.5v56q0 15 10.5 25.5t25.5 10.5h568q15 0 25.5-10.5t10.5-25.5zm0-252v-64q0-14-9-23t-23-9h-576q-14 0-23 9t-9 23v64q0 14 9 23t23 9h576q14 0 23-9t9-23zm256-320v1216q0 66-47 113t-113 47h-352v-96q0-14-9-23t-23-9h-64q-14 0-23 9t-9 23v96h-768v-96q0-14-9-23t-23-9h-64q-14 0-23 9t-9 23v96h-352q-66 0-113-47t-47-113v-1216q0-66 47-113t113-47h1728q66 0 113 47t47 113z">
-                                        </path>
-                                    </svg>
-                                </span>
-                                <span className="mx-4 text-sm font-normal">Jupiter Notebook</span>
-                              </a>
-                          </div>
-                      </nav>
-                  </div>
-              </div>
-              {/* LNB end */}
-              <div className="flex flex-col w-full pl-0 md:p-4 md:space-y-4">
-                  {/* Header start */}
-                  <header className="z-40 items-center w-full h-16 bg-white shadow-lg dark:bg-gray-700 rounded-2xl">
-                      <div className="relative z-20 flex flex-col justify-center h-full px-3 mx-auto flex-center">
-                          <div className="relative flex items-center w-full pl-1 sm:pr-2 sm:ml-0">
-                              <div className="container relative left-0 z-50 flex w-3/4 h-auto h-full">
-                                  <div className="relative flex items-center w-full h-full lg:w-64 group">
-                                      <svg
-                                          className="absolute left-0 z-20 hidden w-4 h-4 ml-4 text-gray-500 pointer-events-none fill-current group-hover:text-gray-400 sm:block"
-                                          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                          <path
-                                              d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z">
-                                          </path>
-                                      </svg>
-                                      <input type="text"
-                                             className="block w-full py-1.5 pl-10 pr-4 leading-normal rounded-2xl focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 ring-opacity-90 bg-gray-100 dark:bg-gray-800 text-gray-400 aa-input"
-                                             placeholder="Search"/>
-                                      <div className="absolute right-0 hidden h-auto px-2 py-1 mr-2 text-xs text-gray-400 border border-gray-300 rounded-2xl md:block">
-                                          +
-                                      </div>
-                                  </div>
-                              </div>
-                              <GoogleLogoutButton />
-                          </div>
-                      </div>
-                  </header>
-                  {/* Header end */}
-                  {/* content start */}
-                  <div className="h-screen pt-2 pb-24 pl-2 pr-2 overflow-auto md:pt-0 md:pr-0 md:pl-0">
-                      <div className="flex flex-col flex-wrap sm:flex-row ">
-                          <div className="w-full">
-                              {/* content sub start */}
-                              <div className="mb-4">
-                                  <div className="w-full p-4 bg-white shadow-lg rounded-2xl dark:bg-gray-700">
-                                      <div className="flex items-center justify-between mb-6">
-                                          <div className="flex items-center">
-                                            <span className="relative p-2 bg-blue-100 rounded-xl">
-                                                <svg width="25" height="25" viewBox="0 0 256 262" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid">
-                                                    <path
-                                                        d="M255.878 133.451c0-10.734-.871-18.567-2.756-26.69H130.55v48.448h71.947c-1.45 12.04-9.283 30.172-26.69 42.356l-.244 1.622 38.755 30.023 2.685.268c24.659-22.774 38.875-56.282 38.875-96.027"
-                                                        fill="#4285F4">
-                                                    </path>
-                                                    <path
-                                                        d="M130.55 261.1c35.248 0 64.839-11.605 86.453-31.622l-41.196-31.913c-11.024 7.688-25.82 13.055-45.257 13.055-34.523 0-63.824-22.773-74.269-54.25l-1.531.13-40.298 31.187-.527 1.465C35.393 231.798 79.49 261.1 130.55 261.1"
-                                                        fill="#34A853">
-                                                    </path>
-                                                    <path
-                                                        d="M56.281 156.37c-2.756-8.123-4.351-16.827-4.351-25.82 0-8.994 1.595-17.697 4.206-25.82l-.073-1.73L15.26 71.312l-1.335.635C5.077 89.644 0 109.517 0 130.55s5.077 40.905 13.925 58.602l42.356-32.782"
-                                                        fill="#FBBC05">
-                                                    </path>
-                                                    <path
-                                                        d="M130.55 50.479c24.514 0 41.05 10.589 50.479 19.438l36.844-35.974C195.245 12.91 165.798 0 130.55 0 79.49 0 35.393 29.301 13.925 71.947l42.211 32.783c10.59-31.477 39.891-54.251 74.414-54.251"
-                                                        fill="#EB4335">
-                                                    </path>
-                                                </svg>
-                                            </span>
-                                              <div className="flex flex-col">
-                                                <span className="ml-2 font-bold text-black text-md dark:text-white">
-                                                    Google
-                                                </span>
-                                                  <span className="ml-2 text-sm text-gray-500 dark:text-white">
-                                                    Google Inc.
-                                                </span>
-                                              </div>
-                                          </div>
-                                          <div className="flex items-center">
-                                              <button className="p-1 border border-gray-200 rounded-full">
-                                                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                       className="w-4 h-4 text-yellow-500" fill="currentColor"
-                                                       viewBox="0 0 1792 1792">
-                                                      <path
-                                                          d="M1728 647q0 22-26 48l-363 354 86 500q1 7 1 20 0 21-10.5 35.5t-30.5 14.5q-19 0-40-12l-449-236-449 236q-22 12-40 12-21 0-31.5-14.5t-10.5-35.5q0-6 2-20l86-500-364-354q-25-27-25-48 0-37 56-46l502-73 225-455q19-41 49-41t49 41l225 455 502 73q56 9 56 46z">
-                                                      </path>
-                                                  </svg>
-                                              </button>
-                                              <button className="text-gray-200">
-                                                  <svg width="25" height="25" fill="currentColor"
-                                                       viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
-                                                      <path
-                                                          d="M1088 1248v192q0 40-28 68t-68 28h-192q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h192q40 0 68 28t28 68zm0-512v192q0 40-28 68t-68 28h-192q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h192q40 0 68 28t28 68zm0-512v192q0 40-28 68t-68 28h-192q-40 0-68-28t-28-68v-192q0-40 28-68t68-28h192q40 0 68 28t28 68z">
-                                                      </path>
-                                                  </svg>
-                                              </button>
-                                          </div>
-                                      </div>
-                                      <div className="flex items-center justify-between mb-4 space-x-12">
-                                        <span
-                                            className="flex items-center px-2 py-1 text-xs font-semibold text-gray-500 bg-gray-200 rounded-md">
-                                            PROGRESS
-                                        </span>
-                                          <span
-                                              className="flex items-center px-2 py-1 text-xs font-semibold text-red-400 bg-white border border-red-400 rounded-md">
-                                            HIGH PRIORITY
-                                        </span>
-                                      </div>
-                                      <div className="block m-auto">
-                                          <div>
-                                            <span className="inline-block text-sm text-gray-500 dark:text-gray-100">
-                                                Task done :
-                                                <span className="font-bold text-gray-700 dark:text-white">
-                                                    25
-                                                </span>
-                                                /50
-                                            </span>
-                                          </div>
-                                          <div className="w-full h-2 mt-2 bg-gray-200 rounded-full">
-                                              <div
-                                                  className="w-1/2 h-full text-xs text-center text-white bg-purple-500 rounded-full">
-                                              </div>
-                                          </div>
-                                      </div>
-                                      <div className="flex items-center justify-start my-4 space-x-4">
-                                        <span
-                                            className="flex items-center px-2 py-1 text-xs font-semibold text-green-500 rounded-md bg-green-50">
-                                            IOS APP
-                                        </span>
-                                          <span
-                                              className="flex items-center px-2 py-1 text-xs font-semibold text-blue-500 bg-blue-100 rounded-md">
-                                            UI/UX
-                                        </span>
-                                      </div>
-                                      <span
-                                          className="flex items-center px-2 py-1 mt-4 text-xs font-semibold text-yellow-500 bg-yellow-100 rounded-md w-36">
-                                        DUE DATE : 18 JUN
-                                    </span>
-                                  </div>
-                              </div>ƒ
-                              {/* content sub end */}
-                          </div>
-                      </div>
-                  </div>
-                  {/* content end */}
-              </div>
-          </div>
-      </main>
+        <>
+            <SideBar2 menu="dashboard"/>
+            {status === 'loading' ? (
+                <div className="modal modal--type-01" data-name="AIOps_02_Dashboards_02(권한확인)" data-node-id="450:25083">
+                    <div className="modal__overlay" data-name="popup" data-node-id="450:25115">
+                        <div className="modal__backdrop" data-name="dim" data-node-id="450:25116"></div>
 
-  );
+                        <div className="modal__container modal__container--size-sm" data-name="Modal" data-node-id="450:25117">
+
+                            <div className="modal__loading-image">
+                                <img src="../../images/image_loading.png" alt="Loading" />
+                            </div>
+
+                            <div className="modal__loading-image modal__loading-image--original">
+                                <img src="../../images/loading_2.gif" alt="Loading animation" className="loading-img-original" />
+                            </div>
+
+                            <div className="modal__content" data-name="con" data-node-id="450:25120">
+                                <div className="modal__title-section" data-name="text" data-node-id="450:25121">
+                                    <h2 className="modal__title">권한 확인 중입니다.</h2>
+                                    <div className="modal__description" data-node-id="450:25123">
+                                        <p>잠시만 기다려주세요.</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ) : status === 'no_permission' ? (
+                <main className="demo-content">
+                    <div className="modal modal--type-01" data-name="AIOps_02_Dashboards_02(권한확인)" data-node-id="450:25083">
+
+                        <div className="modal__overlay" data-name="popup" data-node-id="450:25115">
+                            <div className="modal__backdrop" data-name="dim" data-node-id="450:25116"></div>
+
+                            <div className="modal__container modal__container--size-sm" data-name="Modal" data-node-id="450:25117">
+
+                                <div className="modal__close-wrapper" data-name="close" data-node-id="450:25118">
+                                    <button className="modal__close-btn" data-name="icon_close" data-node-id="450:25119" type="button" aria-label="닫기"
+                                            onClick={() => setStatus('error')}>
+                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </button>
+                                </div>
+
+                                <div className="modal__content" data-name="con" data-node-id="450:25120">
+
+                                    <div className="modal__title-section" data-name="text" data-node-id="450:25121">
+                                        <h2 className="modal__title">권한 확인이 필요해요.</h2>
+                                        <div className="modal__description" data-node-id="450:25123">
+                                            <p>이 기능을 사용하려면</p>
+                                            <p>'Vertex AI Workbench 사용 권한'이 필요합니다.</p>
+                                            <p>담당 팀에 권한을 신청해주세요!</p>
+                                        </div>
+                                    </div>
+
+                                    <div className="modal__actions" data-name="btn" data-node-id="450:25125">
+                                        <button className="btn btn-primary btn-md" data-name="BTN" data-node-id="reflect:450:25127" type="button"
+                                                onClick={() => setStatus('error')}>
+                                            <span className="btn-text">확인</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            ) : (
+                <>
+                    <div id="lnb-container"></div>
+                    <div className="container">
+                        <div id="header-container"></div>
+                        <section className="container-body">
+                            <div className="title-area">
+                                <div className="contents-breadcrumb">
+                                    <span className="contents-breadcrumb-item">HOME</span>
+                                    <span className="contents-breadcrumb-separator">
+                                        <Image src="/images/icon/icon_arrow_right.svg" alt="구분자" width={20} height={20}/>
+                                    </span>
+                                    <span className="contents-breadcrumb-item">Dashboards</span>
+                                </div>
+
+                                <div className="contents-title">
+                                    <p className="contents-title-text">Dashboards</p>
+                                </div>
+                            </div>
+
+                            <div className="contents-area">
+                                <div className="contents-area-wrapper">
+                                    <div className="contents-area-inner">
+                                        <div className="contents-area-title">
+                                            <p className="contents-area-title-line">Vertex AI Workbench 인스턴스 생성은</p>
+                                            <p className="contents-area-title-line">권한이 있어야 진행할 수 있습니다.</p>
+                                            <p className="contents-area-subtitle">담당자에게 권한을 요청하세요.</p>
+                                        </div>
+                                        {/*
+                                        <div className="contents-area-actions">
+                                            <button className="btn btn-primary btn-lg">
+                                                <span className="btn-text">인스턴스 생성하기</span>
+                                            </button>
+                                            <button className="btn btn-secondary btn-lg">
+                                                <span className="btn-text">가이드 문서 보기</span>
+                                            </button>
+                                            <button className="btn btn-secondary btn-lg">
+                                                <span className="btn-text">기술 지원팀에 문의하기</span>
+                                            </button>
+                                            <p className="contents-area-link">
+                                                <span className="contents-area-link-text">Don't have an account? </span>
+                                                Sign up
+                                            </p>
+                                        </div>
+                                        */}
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </>
+            )}
+        </>
+    );
 }

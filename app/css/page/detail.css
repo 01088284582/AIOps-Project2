@@ -1,0 +1,542 @@
+@charset "UTF-8";
+
+/* ============================================ */
+/* 모달 및 상세 페이지 스타일 */
+/* ============================================ */
+
+/* ============================================ */
+/* Dashboards_02 (권한확인 모달) 스타일 */
+/* ============================================ */
+
+.dashboards-02 .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.dashboards-02 .modal-container {
+    width: 100%;
+    max-width: 400px;
+    margin: 20px;
+}
+
+.dashboards-02 .modal-content {
+    background: var(--neutral-800);
+    border: 1px solid var(--neutral-700);
+    border-radius: var(--radius-12);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+}
+
+.dashboards-02 .modal-header {
+    position: relative;
+    padding: 30px 30px 20px;
+    border-bottom: 1px solid var(--neutral-700);
+}
+
+.dashboards-02 .modal-title {
+    font-size: var(--font-size-20);
+    font-weight: var(--font-weight-semibold);
+    color: var(--base-white);
+    margin: 0;
+}
+
+.dashboards-02 .modal-close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 24px;
+    height: 24px;
+    background: none;
+    border: none;
+    color: var(--neutral-400);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+}
+
+.dashboards-02 .modal-close-btn:hover {
+    color: var(--base-white);
+}
+
+.dashboards-02 .modal-body {
+    padding: 20px 30px;
+}
+
+.dashboards-02 .modal-description {
+    margin-bottom: 24px;
+}
+
+.dashboards-02 .modal-description p {
+    color: var(--base-white);
+    font-size: var(--font-size-16);
+    line-height: 1.5;
+    margin: 0 0 8px 0;
+}
+
+.dashboards-02 .modal-description p:last-child {
+    margin-bottom: 0;
+}
+
+.dashboards-02 .modal-actions {
+    display: flex;
+    justify-content: center;
+}
+
+/* ============================================ */
+/* Jupyter_02 (인스턴스 생성) 스타일 */
+/* ============================================ */
+
+.jupiter-02 .contents-inner {
+    padding: 40px;
+}
+
+.jupiter-02 .contents-inner section {
+    margin-bottom: 40px;
+}
+
+.jupiter-02 .contents-inner section:last-child {
+    margin-bottom: 0;
+}
+
+.jupiter-02 .contents-inner h2 {
+    color: var(--base-white);
+    font-size: var(--font-size-28);
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+/* 알림 배너 */
+.jupiter-02 .alert-banner {
+    background: var(--neutral-800);
+    padding: 24px;
+    border-radius: var(--radius-8);
+    border: 1px solid var(--neutral-700);
+    margin-bottom: 20px;
+}
+
+.jupiter-02 .alert-banner-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.jupiter-02 .alert-banner-icon {
+    width: 20px;
+    height: 20px;
+    color: var(--orange-500);
+    flex-shrink: 0;
+}
+
+.jupiter-02 .alert-banner-text {
+    color: var(--base-white);
+    font-size: var(--font-size-16);
+    flex: 1;
+}
+
+.jupiter-02 .alert-banner-close {
+    margin-left: auto;
+    padding: 8px 16px;
+    background: var(--neutral-700);
+    border: none;
+    border-radius: var(--radius-4);
+    color: var(--neutral-300);
+    font-size: var(--font-size-14);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.jupiter-02 .alert-banner-close:hover {
+    background: var(--neutral-600);
+}
+
+.jupiter-02 .alert-banner-info {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.jupiter-02 .alert-banner-info-text {
+    color: var(--neutral-400);
+    font-size: var(--font-size-14);
+}
+
+.jupiter-02 .alert-banner-info-link {
+    color: var(--orange-500);
+    font-size: var(--font-size-14);
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+/* 필터 섹션 */
+.jupiter-02 .filter-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    border-top: 1px solid var(--neutral-600);
+    border-bottom: 1px solid var(--neutral-600);
+}
+
+.jupiter-02 .filter-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.jupiter-02 .filter-icon {
+    width: 20px;
+    height: 20px;
+    color: var(--base-white);
+}
+
+.jupiter-02 .filter-text {
+    color: var(--base-white);
+    font-size: var(--font-size-14);
+}
+
+.jupiter-02 .filter-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.jupiter-02 .filter-divider {
+    width: 1px;
+    height: 16px;
+    background: var(--neutral-600);
+}
+
+/* 테이블 스타일 */
+.jupiter-02 .table-container {
+    background: var(--neutral-800);
+    border-radius: var(--radius-8);
+    border: 1px solid var(--neutral-700);
+    overflow: hidden;
+}
+
+.jupiter-02 .table-header {
+    display: grid;
+    grid-template-columns: 44px 200px 130px 70px 1fr 190px 200px;
+    gap: 0;
+    background: var(--neutral-700);
+    padding: 16px;
+}
+
+.jupiter-02 .table-header-cell {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.jupiter-02 .table-header-text {
+    color: var(--base-white);
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-14);
+}
+
+.jupiter-02 .table-header-sort {
+    width: 14px;
+    height: 14px;
+    color: var(--neutral-400);
+}
+
+.jupiter-02 .table-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.jupiter-02 .table-row {
+    display: grid;
+    grid-template-columns: 44px 200px 130px 70px 1fr 190px 200px;
+    gap: 0;
+    padding: 16px;
+    border-bottom: 1px solid var(--neutral-600);
+}
+
+.jupiter-02 .table-row:last-child {
+    border-bottom: none;
+}
+
+.jupiter-02 .table-cell {
+    display: flex;
+    align-items: center;
+}
+
+.jupiter-02 .table-cell-text {
+    color: var(--base-white);
+    font-size: var(--font-size-14);
+}
+
+.jupiter-02 .table-cell-text.instance-name {
+    color: var(--indigo-400);
+    font-weight: var(--font-weight-semibold);
+}
+
+/* 체크박스 */
+.jupiter-02 .table-checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.jupiter-02 .table-checkbox-input {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--neutral-200);
+    border-radius: 2px;
+    background: transparent;
+    opacity: 0.38;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.jupiter-02 .table-checkbox-input:checked {
+    background: var(--color-bg-button-primary);
+    border-color: var(--color-bg-button-primary);
+}
+
+/* 페이지네이션 */
+.jupiter-02 .pagination-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.jupiter-02 .pagination-item {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--neutral-600);
+    border-radius: var(--radius-4);
+    background: transparent;
+    color: var(--neutral-400);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.jupiter-02 .pagination-item:hover {
+    background: var(--neutral-700);
+    color: var(--base-white);
+}
+
+.jupiter-02 .pagination-item svg {
+    width: 16px;
+    height: 16px;
+}
+
+.jupiter-02 .pagination-text {
+    font-size: var(--font-size-14);
+}
+
+/* 모달 스타일 */
+.jupiter-02 .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.jupiter-02 .modal-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px;
+}
+
+.jupiter-02 .modal-content {
+    background: var(--neutral-800);
+    border: 1px solid var(--neutral-700);
+    border-radius: var(--radius-12);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+}
+
+.jupiter-02 .modal-header {
+    position: relative;
+    padding: 30px 30px 20px;
+    border-bottom: 1px solid var(--neutral-700);
+}
+
+.jupiter-02 .modal-title {
+    font-size: var(--font-size-20);
+    font-weight: var(--font-weight-semibold);
+    color: var(--base-white);
+    margin: 0;
+}
+
+.jupiter-02 .modal-close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 24px;
+    height: 24px;
+    background: none;
+    border: none;
+    color: var(--neutral-400);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+}
+
+.jupiter-02 .modal-close-btn:hover {
+    color: var(--base-white);
+}
+
+.jupiter-02 .modal-body {
+    padding: 20px 30px;
+}
+
+.jupiter-02 .modal-footer {
+    padding: 0 30px 30px;
+}
+
+.jupiter-02 .modal-footer-divider {
+    height: 1px;
+    background: var(--neutral-600);
+    margin-bottom: 20px;
+}
+
+.jupiter-02 .modal-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+/* ============================================ */
+/* 반응형 디자인 */
+/* ============================================ */
+
+@media (max-width: 768px) {
+    .dashboards-02 .modal-container {
+        margin: 16px;
+        max-width: none;
+    }
+    
+    .dashboards-02 .modal-header {
+        padding: 20px 20px 16px;
+    }
+    
+    .dashboards-02 .modal-body {
+        padding: 16px 20px;
+    }
+    
+    .dashboards-02 .modal-title {
+        font-size: var(--font-size-18);
+    }
+    
+    .dashboards-02 .modal-description p {
+        font-size: var(--font-size-14);
+    }
+    
+    .jupyter-02 .contents-inner {
+        padding: 16px;
+    }
+    
+    .jupyter-02 .contents-inner h2 {
+        font-size: var(--font-size-24);
+        margin-bottom: 16px;
+    }
+    
+    .jupyter-02 .alert-banner {
+        padding: 16px;
+    }
+    
+    .jupyter-02 .alert-banner-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .jupyter-02 .alert-banner-close {
+        margin-left: 0;
+        margin-top: 8px;
+    }
+    
+    .jupyter-02 .filter-section {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+    }
+    
+    .jupyter-02 .filter-right {
+        align-self: flex-end;
+    }
+    
+    .jupyter-02 .table-header,
+    .jupyter-02 .table-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+    
+    .jupyter-02 .table-header-cell,
+    .jupyter-02 .table-cell {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .jupyter-02 .table-header,
+    .jupyter-02 .table-row {
+        padding: 12px;
+    }
+    
+    .jupyter-02 .table-header-text,
+    .jupyter-02 .table-cell-text {
+        font-size: var(--font-size-12);
+    }
+    
+    .jupyter-02 .modal-container {
+        margin: 16px;
+        max-width: none;
+    }
+    
+    .jupyter-02 .modal-header {
+        padding: 20px 20px 16px;
+    }
+    
+    .jupyter-02 .modal-body {
+        padding: 16px 20px;
+    }
+    
+    .jupyter-02 .modal-footer {
+        padding: 0 20px 20px;
+    }
+    
+    .jupyter-02 .modal-title {
+        font-size: var(--font-size-18);
+    }
+    
+    .jupyter-02 .modal-actions {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .jupyter-02 .modal-actions .btn {
+        width: 100%;
+    }
+}

@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+/* 프로젝트에서 공통으로 쓰이는 스타일 정의 */
+html {
+    /* 기준 폰트 - Figma 디자인 시스템 반영 */
+    font-family: var(--font-family-pretendard);
+    font-size: var(--font-size-14);
+}
+
+.hide {
+    display: none;
+    opacity: 0;
+}

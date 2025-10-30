@@ -1,0 +1,477 @@
+@charset "UTF-8";
+
+/* ============================================ */
+/* 공통 페이지 스타일 */
+/* ============================================ */
+
+/* 기본 페이지 레이아웃 */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.document {
+    display: flex;
+    min-height: 100vh;
+    background-color: var(--neutral-900);
+}
+
+.container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--neutral-900);
+}
+
+.container-head {
+    color: var(--base-white);
+    font-size: var(--typography-heading-md-size);
+    margin-bottom: 20px;
+}
+
+.container-body {
+    flex: 1;
+    padding: 0;
+    color: var(--neutral-400);
+    font-size: var(--typography-body-md-size);
+    line-height: 1.6;
+}
+
+.container-body p {
+    margin-bottom: 12px;
+}
+
+/* ============================================ */
+/* Dashboards_01 스타일 */
+/* ============================================ */
+
+.dashboards-01 .contents-inner {
+    padding: 40px;
+}
+
+.dashboards-01 .contents-inner section {
+    margin-bottom: 40px;
+}
+
+.dashboards-01 .contents-inner section:last-child {
+    margin-bottom: 0;
+}
+
+.dashboards-01 .contents-inner h2 {
+    color: var(--base-white);
+    font-size: var(--font-size-28);
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.dashboards-01 .contents-inner p {
+    color: var(--neutral-400);
+    font-size: var(--font-size-16);
+    margin-bottom: 32px;
+    line-height: 1.5;
+}
+
+.dashboards-01 .contents-inner .btn-group {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+/* ============================================ */
+/* Dashboards_03 스타일 */
+/* ============================================ */
+
+.dashboards-03 .contents-inner {
+    padding: 40px;
+}
+
+.dashboards-03 .contents-inner section {
+    margin-bottom: 40px;
+}
+
+.dashboards-03 .contents-inner section:last-child {
+    margin-bottom: 0;
+}
+
+.dashboards-03 .contents-inner h2 {
+    color: var(--base-white);
+    font-size: var(--font-size-28);
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+/* 인스턴스 카드 그리드 */
+.dashboards-03 .instance-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 20px;
+}
+
+/* 인스턴스 카드 */
+.dashboards-03 .instance-card {
+    background: var(--neutral-800);
+    padding: 24px;
+    border-radius: var(--radius-8);
+    border: 1px solid var(--neutral-700);
+}
+
+.dashboards-03 .instance-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 16px;
+}
+
+.dashboards-03 .instance-card-title {
+    color: var(--base-white);
+    font-size: var(--font-size-20);
+    margin-bottom: 8px;
+    font-weight: var(--font-weight-semibold);
+}
+
+.dashboards-03 .instance-card-times {
+    color: var(--neutral-400);
+    font-size: var(--font-size-12);
+    text-align: right;
+}
+
+.dashboards-03 .instance-card-times p {
+    margin: 0 0 4px 0;
+}
+
+.dashboards-03 .instance-card-times p:last-child {
+    margin-bottom: 0;
+}
+
+/* 메트릭 그리드 */
+.dashboards-03 .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.dashboards-03 .metric-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.dashboards-03 .metric-label {
+    color: var(--neutral-400);
+    font-size: var(--font-size-12);
+    margin: 0;
+}
+
+.dashboards-03 .metric-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dashboards-03 .metric-value {
+    color: var(--base-white);
+    font-size: var(--font-size-20);
+    font-weight: var(--font-weight-bold);
+}
+
+.dashboards-03 .metric-progress {
+    width: 100%;
+    height: 4px;
+    background: var(--neutral-700);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.dashboards-03 .metric-progress-bar {
+    height: 100%;
+    border-radius: 2px;
+}
+
+.dashboards-03 .metric-progress-bar.progress-yellow {
+    background: var(--orange-500);
+}
+
+.dashboards-03 .metric-progress-bar.progress-red {
+    background: var(--red-500);
+}
+
+.dashboards-03 .metric-progress-bar.progress-green {
+    background: var(--green-500);
+}
+
+.dashboards-03 .metric-progress-bar.progress-blue {
+    background: var(--blue-500);
+}
+
+/* 인스턴스 세부사항 */
+.dashboards-03 .instance-details {
+    border-top: 1px solid var(--neutral-700);
+    padding-top: 16px;
+}
+
+.dashboards-03 .details-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    font-size: var(--font-size-12);
+}
+
+.dashboards-03 .detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.dashboards-03 .detail-label {
+    color: var(--neutral-400);
+    margin: 0;
+}
+
+.dashboards-03 .detail-value {
+    color: var(--base-white);
+    margin: 0;
+}
+
+/* ============================================ */
+/* Jupyter_01 스타일 */
+/* ============================================ */
+
+.jupiter-01 .contents-inner {
+    padding: 40px;
+}
+
+.jupiter-01 .contents-inner section {
+    margin-bottom: 40px;
+}
+
+.jupiter-01 .contents-inner section:last-child {
+    margin-bottom: 0;
+}
+
+.jupiter-01 .contents-inner h2 {
+    color: var(--base-white);
+    font-size: var(--font-size-28);
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+/* 테이블 스타일 */
+.jupiter-01 .table-container {
+    background: var(--neutral-800);
+    border-radius: var(--radius-8);
+    border: 1px solid var(--neutral-700);
+    overflow: hidden;
+}
+
+.jupiter-01 .table-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+    gap: 0;
+    background: var(--neutral-700);
+    padding: 16px;
+}
+
+.jupiter-01 .table-header-cell {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.jupiter-01 .table-header-text {
+    color: var(--base-white);
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-14);
+}
+
+.jupiter-01 .table-header-sort {
+    width: 14px;
+    height: 14px;
+    color: var(--neutral-400);
+}
+
+.jupiter-01 .table-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.jupiter-01 .table-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+    gap: 0;
+    padding: 16px;
+    border-bottom: 1px solid var(--neutral-700);
+}
+
+.jupiter-01 .table-row:last-child {
+    border-bottom: none;
+}
+
+.jupiter-01 .table-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.jupiter-01 .table-cell-text {
+    color: var(--base-white);
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-14);
+}
+
+/* 페이지네이션 */
+.jupiter-01 .pagination-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.jupiter-01 .pagination-item {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--neutral-600);
+    border-radius: var(--radius-4);
+    background: transparent;
+    color: var(--neutral-400);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.jupiter-01 .pagination-item:hover {
+    background: var(--neutral-700);
+    color: var(--base-white);
+}
+
+.jupiter-01 .pagination-item.active {
+    background: var(--color-bg-button-primary);
+    color: var(--base-white);
+    border-color: var(--color-bg-button-primary);
+}
+
+.jupiter-01 .pagination-item svg {
+    width: 16px;
+    height: 16px;
+}
+
+.jupiter-01 .pagination-text {
+    font-size: var(--font-size-14);
+}
+
+/* ============================================ */
+/* 반응형 디자인 */
+/* ============================================ */
+
+@media (max-width: 1024px) {
+    .dashboards-01 .contents-inner,
+    .dashboards-03 .contents-inner,
+    .jupyter-01 .contents-inner {
+        padding: 20px;
+    }
+    
+    .dashboards-01 .contents-inner h2,
+    .dashboards-03 .contents-inner h2,
+    .jupyter-01 .contents-inner h2 {
+        font-size: var(--font-size-24);
+    }
+    
+    .dashboards-01 .contents-inner .btn-group {
+        flex-direction: column;
+    }
+    
+    .dashboards-01 .contents-inner .btn-group .btn {
+        width: 100%;
+    }
+    
+    .dashboards-03 .instance-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .dashboards-03 .metrics-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .dashboards-03 .details-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .jupyter-01 .table-header,
+    .jupyter-01 .table-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+    
+    .jupyter-01 .table-header-cell,
+    .jupyter-01 .table-cell {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboards-01 .contents-inner,
+    .dashboards-03 .contents-inner,
+    .jupyter-01 .contents-inner {
+        padding: 16px;
+    }
+    
+    .dashboards-01 .contents-inner h2,
+    .dashboards-03 .contents-inner h2,
+    .jupyter-01 .contents-inner h2 {
+        font-size: var(--font-size-20);
+        margin-bottom: 16px;
+    }
+    
+    .dashboards-01 .contents-inner p {
+        font-size: var(--font-size-14);
+        margin-bottom: 24px;
+    }
+    
+    .dashboards-03 .instance-card {
+        padding: 16px;
+    }
+    
+    .dashboards-03 .instance-card-header {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .dashboards-03 .instance-card-times {
+        text-align: left;
+    }
+    
+    .dashboards-03 .metrics-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .dashboards-03 .details-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .jupyter-01 .table-header,
+    .jupyter-01 .table-row {
+        padding: 12px;
+    }
+    
+    .jupyter-01 .table-header-text,
+    .jupyter-01 .table-cell-text {
+        font-size: var(--font-size-12);
+    }
+    
+    .jupyter-01 .pagination-container {
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+    
+    .jupyter-01 .pagination-item {
+        width: 28px;
+        height: 28px;
+    }
+}
