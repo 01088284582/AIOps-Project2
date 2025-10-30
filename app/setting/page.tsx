@@ -5,6 +5,7 @@ import {useEffect, useState} from "react";
 import SideBar2 from "@/components/SideBar2";
 import {getNotebookInfo, getNotebookList, getPermission} from "@/lib/NotebookAPI";
 import {useRouter} from "next/navigation";
+import Header2 from "@/components/Header2";
 
 function SettingPage() {
     const [status, setStatus] = useState<string>('loading');
@@ -54,6 +55,7 @@ function SettingPage() {
                                     console.log("getNotebookInfo tags : ", data2.tags);
                                     data[i].id = i;
 
+                                    // @ts-ignore
                                     setJnList([...jnList, data[i]]);
                                 })
                                 .catch((error) => {
@@ -188,7 +190,6 @@ function SettingPage() {
                 </div>
             </div>
 
-
             <SideBar2 menu="setting"/>
             {status === 'loading' ? (
                 <div className="modal modal--type-01" data-name="AIOps_02_Dashboards_02(권한확인)" data-node-id="450:25083">
@@ -264,6 +265,7 @@ function SettingPage() {
                 </div>
             ) : status === 'finish' ? (
                 <div className="container">
+                    <Header2/>
                     <section className="container-body">
                         <div className="title-area">
                             <div className="contents-breadcrumb">
@@ -402,6 +404,7 @@ function SettingPage() {
                 </div>
             ) : (
                 <div className="container">
+                    <Header2/>
                     <section className="container-body">
                         <div className="title-area">
                             <div className="contents-breadcrumb">

@@ -5,6 +5,7 @@ import {useState, useEffect} from "react";
 import Image from "next/image";
 import SideBar2 from "@/components/SideBar2";
 import {useRouter} from "next/navigation";
+import Header2 from "@/components/Header2";
 
 export default function Home() {
     //const [status, setStatus] = useState<{ authenticated: boolean; email: string | null; name: string | null } | null>(null);
@@ -104,9 +105,8 @@ export default function Home() {
                 </main>
             ) : (
                 <>
-                    <div id="lnb-container"></div>
                     <div className="container">
-                        <div id="header-container"></div>
+                        <Header2 />
                         <section className="container-body">
                             <div className="title-area">
                                 <div className="contents-breadcrumb">

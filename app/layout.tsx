@@ -2,11 +2,8 @@ import './css/base/index.css'
 import './css/layout/index.css'
 import './css/layout/header.css'
 import './css/components/index.css'
-import './css/components/title-area.css'
 import './css/components/contents-area.css'
 import './css/components/Instance-template.css'
-import './css/components/badge.css'
-import './css/components/button.css'
 import './css/components/input_login.css'
 import './css/page/page-index.css'
 import './css/page/login.css'
@@ -29,5 +26,5 @@ export default function RootLayout({children}:{children: React.ReactNode;})
         </main>
         </body>
         </html>
-);
+    );
 }

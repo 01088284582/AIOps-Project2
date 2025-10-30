@@ -68,7 +68,7 @@ function DashboardPage() {
                                     data[i].disk_usage = data2.metrics.disk.usage_total;
                                     data[i].disk_tatal = data2.metrics.disk.capacity_total;
 
-                                    //@ts-ignore
+                                    // @ts-ignore
                                     setJnList([...jnList, data[i]]);
                                 })
                                 .catch((error) => {
