@@ -11,7 +11,7 @@ COPY package.json package-lock.json ./
 RUN npm ci
 
 # Stage 2: 소스코드 빌드
-FROM node:18-alpine AS builder
+FROM node:20-alpine AS builder
 WORKDIR /app
 
 # [npm 버전 업데이트]
