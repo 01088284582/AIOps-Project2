@@ -3,12 +3,22 @@
 # Stage 1: 의존성 설치
 FROM node:18-alpine AS deps
 WORKDIR /app
+
+# [npm 버전 업데이트]
+# npm을 최신 버전(11.6.2)으로 업데이트합니다.
+RUN npm install -g npm@11.6.2
+
 COPY package.json package-lock.json ./
 RUN npm ci
 
 # Stage 2: 소스코드 빌드
 FROM node:18-alpine AS builder
 WORKDIR /app
+
+# [npm 버전 업데이트]
+# npm을 최신 버전(11.6.2)으로 업데이트합니다.
+RUN npm install -g npm@11.6.2
+
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
