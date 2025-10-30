@@ -9,7 +9,7 @@ import Header2 from "@/components/Header2";
 
 function SettingPage() {
     const [status, setStatus] = useState<string>('loading');
-    const [jnList, setJnList] = useState<any[]>([]);
+    const [jnList, setJnList] = useState<string[]>([]);
     const router = useRouter();
 
     useEffect(() => {
