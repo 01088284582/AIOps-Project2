@@ -7,9 +7,32 @@ import {getNotebookInfo, getNotebookList, getPermission} from "@/lib/NotebookAPI
 import {useRouter} from "next/navigation";
 import Header2 from "@/components/Header2";
 
+interface JnInfo {
+    consumer_project_id : string,
+    cpu_percent : string,
+    create_time : string,
+    disk_percent : string,
+    disk_total : string,
+    disk_usage : string,
+    gpu_percent : string,
+    idle_timeout_seconds : string,
+    instance : string,
+    memory_percent : string,
+    memory_tatal : string,
+    memory_usage : string,
+    name : string,
+    notebook_instance : string,
+    notebook_product : string,
+    owner : string,
+    proxy_url : string,
+    state : string,
+    update_time : string,
+    version : string
+}
+
 function DashboardPage() {
     const [status, setStatus] = useState<string>('loading');
-    const [jnList, setJnList] = useState<string[]>([]);
+    const [jnList, setJnList] = useState<JnInfo[]>([]);
     const router = useRouter();
 
     useEffect(() => {

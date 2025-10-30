@@ -206,8 +206,8 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-md);
-        align-items: flex-start;
+    gap: 12px;
+    align-items: flex-start;
 }
 
 .info-section__title, .detail-title {
@@ -227,17 +227,18 @@
 .info-list, .detail-list {
     display: flex;
     flex-direction: column;
+    gap: 4px;
 }
 
 .info-item, .detail-item {
     display: flex;
     gap: 11px;
-    height: 20px;
+    /* height: 20px; */
     align-items: center;
 }
 
 .info-item__label, .detail-label {
-    width: 100px;
+    min-width: 100px;
     font-family: var(--font-family-pretendard);
     font-size: var(--font-size-12);
     font-weight: var(--font-weight-regular);
@@ -253,11 +254,16 @@
     line-height: var(--line-height-16);
     color: var(--neutral-400);
     letter-spacing: var(--letter-spacing-0);
+    word-break: break-all;
+}
+
+.detail-value:hover {
+    color: var(--color-text-secondary);
 }
 
 /* 구분선 */
 .divider, .detail-divider {
     width: 1px;
-    height: 116px;
+    height: auto;
     background-color: var(--neutral-700);
 }

@@ -43,17 +43,6 @@ function SettingPage() {
                             console.log("getNotebookList data name: ", name);
                             getNotebookInfo(zone, name)
                                 .then((data2) =>{
-                                    console.log("getNotebookInfo : ", data2);
-                                    console.log("getNotebookInfo instance : ", data2.instance);
-                                    console.log("getNotebookInfo name : ", data2.name);
-                                    console.log("getNotebookInfo state : ", data2.state);
-                                    console.log("getNotebookInfo proxy_uri : ", data2.proxy_uri);
-                                    console.log("getNotebookInfo create_time : ", data2.create_time);
-                                    console.log("getNotebookInfo update_time : ", data2.update_time);
-                                    console.log("getNotebookInfo labels : ", data2.labels);
-                                    console.log("getNotebookInfo metadata : ", data2.metadata);
-                                    console.log("getNotebookInfo tags : ", data2.tags);
-                                    data[i].id = i;
 
                                     setJnList([...jnList, data[i]]);
                                 })
