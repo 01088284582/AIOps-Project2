@@ -1,0 +1,215 @@
+@charset "UTF-8";
+
+/* Input Component Styles */
+/* Source: Figma Design System - Input Component */
+/* Updated based on node-id: 450:17110 */
+
+/* ============================================ */
+/* Input Wrapper - Base Styles */
+/* ============================================ */
+.input-wrapper {
+    background-color: var(--neutral-800); /* #262626 */
+    border: 1px solid var(--neutral-600); /* #525252 */
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    position: relative;
+    border-radius: 8px;
+    width: 100%;
+    height: 46px;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+}
+
+/* ============================================ */
+/* Input Field - Text Input */
+/* ============================================ */
+.input-field {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: var(--font-family-pretendard);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: -0.2px;
+    color: var(--color-text-primary-a); /* #fafafa */
+    min-width: 0;
+    padding: 15px 0;
+}
+
+.input-field::placeholder {
+    color: var(--color-text-tertiary); /* #a1a1a1 */
+    font-weight: 400;
+}
+
+/* ============================================ */
+/* Input States */
+/* ============================================ */
+
+/* Default State */
+.input-wrapper.input-default {
+    border-color: var(--neutral-600);
+}
+
+.input-wrapper.input-default .input-field {
+    color: var(--color-text-tertiary);
+    font-weight: 400;
+}
+
+/* Typing State */
+.input-wrapper.input-typing {
+    border-color: var(--neutral-600);
+}
+
+.input-wrapper.input-typing .input-field {
+    color: var(--color-text-primary-a);
+    font-weight: 500;
+}
+
+/* Done State */
+.input-wrapper.input-done {
+    border-color: var(--neutral-600);
+}
+
+.input-wrapper.input-done .input-field {
+    color: var(--color-text-primary-a);
+    font-weight: 500;
+}
+
+/* Disabled State */
+.input-wrapper.input-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.input-wrapper.input-disabled .input-field {
+    cursor: not-allowed;
+    color: var(--color-text-disabled);
+    font-weight: 600;
+}
+
+/* Focus State */
+.input-wrapper:focus-within {
+    border-color: var(--color-border-focus-ring);
+    outline: none;
+}
+
+/* ============================================ */
+/* Textarea Variant */
+/* ============================================ */
+.input-textarea {
+    resize: vertical;
+    min-height: 100px;
+    padding: 15px 0;
+    line-height: 1.5;
+}
+
+/* ============================================ */
+/* Input Container & Groups */
+/* ============================================ */
+.input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+/* ============================================ */
+/* Input Label */
+/* ============================================ */
+.input-label {
+    display: block;
+    font-family: var(--font-family-pretendard);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: -0.2px;
+    color: var(--color-text-primary-a);
+    margin-bottom: 8px;
+}
+
+/* ============================================ */
+/* Input with Icon */
+/* ============================================ */
+.input-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    color: var(--neutral-400);
+}
+
+.input-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* ============================================ */
+/* Size Variants */
+/* ============================================ */
+.input-wrapper-sm {
+    min-height: 36px;
+    padding: 0 12px;
+}
+
+.input-wrapper-sm .input-field {
+    font-size: var(--typography-body-sm-size);
+    padding: 8px 0;
+}
+
+.input-wrapper-lg {
+    min-height: 56px;
+    padding: 0 20px;
+}
+
+.input-wrapper-lg .input-field {
+    font-size: var(--typography-body-lg-size);
+    padding: 18px 0;
+}
+
+/* ============================================ */
+/* Demo Styles */
+/* ============================================ */
+.component-container {
+    padding: 40px;
+    background-color: var(--neutral-900);
+    min-height: 100vh;
+}
+
+.component-container h2 {
+    color: var(--base-white);
+    margin-bottom: 30px;
+    font-size: var(--font-size-24);
+}
+
+.input-group {
+    margin-bottom: 30px;
+    max-width: 400px;
+}
+
+.input-group h3 {
+    color: var(--base-white);
+    margin-bottom: 15px;
+    font-size: var(--font-size-16);
+}
+
+.input-group .input-label {
+    margin-top: 10px;
+}
+
+.input-group .input-wrapper {
+    margin-bottom: 15px;
+}
+

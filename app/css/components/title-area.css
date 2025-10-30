@@ -1,0 +1,336 @@
+@charset "UTF-8";
+
+/* ============================================ */
+/* Title Area Component - Figma Design System */
+/* ============================================ */
+
+.title-area {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 0;
+  padding: 0 30px 30px;
+  width: 100%;
+}
+
+.title-area-header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.title-area-title {
+  color: var(--base-white);
+  font-family: var(--font-family-pretendard);
+  font-size: var(--font-size-28);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-tight);
+  margin: 0;
+  padding: 0;
+}
+
+.title-area-subtitle {
+  color: var(--neutral-400);
+  font-family: var(--font-family-pretendard);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.3;
+  letter-spacing: var(--letter-spacing-0);
+  margin: 0;
+  padding: 0;
+}
+
+.title-area-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Title Area Variants */
+.title-area--large .title-area-title {
+  font-size: var(--font-size-40);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.2;
+}
+
+.title-area--large .title-area-subtitle {
+  font-size: var(--font-size-18);
+  font-weight: var(--font-weight-medium);
+}
+
+.title-area--small .title-area-title {
+  font-size: var(--font-size-24);
+  font-weight: var(--font-weight-semibold);
+}
+
+.title-area--small .title-area-subtitle {
+  font-size: var(--font-size-14);
+}
+
+/* Title Area with Icon */
+.title-area--with-icon {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.title-area--with-icon .title-area-icon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--neutral-800);
+  border-radius: var(--radius-12);
+  border: 1px solid var(--neutral-700);
+}
+
+.title-area--with-icon .title-area-icon svg {
+  width: 24px;
+  height: 24px;
+  color: var(--base-white);
+}
+
+.title-area--with-icon .title-area-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Title Area with Badge */
+.title-area--with-badge {
+  position: relative;
+}
+
+.title-area-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: var(--color-bg-noti-count);
+  color: var(--base-white);
+  font-size: var(--font-size-10);
+  font-weight: var(--font-weight-semibold);
+  padding: 2px 6px;
+  border-radius: var(--radius-infinity);
+  min-width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+/* Title Area Compact */
+.title-area--compact {
+  margin-bottom: 24px;
+}
+
+.title-area--compact .title-area-title {
+  font-size: var(--font-size-24);
+  margin-bottom: 8px;
+}
+
+.title-area--compact .title-area-subtitle {
+  font-size: var(--font-size-14);
+}
+
+/* Title Area Centered */
+.title-area--centered {
+  text-align: center;
+  align-items: center;
+}
+
+.title-area--centered .title-area-actions {
+  justify-content: center;
+}
+
+/* ============================================ */
+/* Breadcrumb Component - Figma Design System */
+/* ============================================ */
+
+.contents-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 0;
+  min-height: 20px;  /* 최소 높이 설정 */
+  padding: 2px 0;  /* 상하 여백 추가 */
+}
+
+.contents-breadcrumb-item {
+  color: var(--color-text-disabled);
+  font-family: var(--typography-body-md-family);
+  font-size: var(--typography-body-md-size);
+  font-weight: var(--font-weight-medium);
+  line-height: 16px;  /* 명시적 line-height 설정 */
+  letter-spacing: var(--typography-body-md-letter-spacing);
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+}
+
+.contents-breadcrumb-separator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.contents-breadcrumb-separator img {
+  width: 20px;  /* 아이콘 크기를 20px로 수정 */
+  height: 20px;  /* 아이콘 크기를 20px로 수정 */
+  object-fit: contain;
+  display: block;
+  color: var(--color-icon-secondary);
+  filter: brightness(0) saturate(100%) invert(25%) sepia(0%) saturate(0%) hue-rotate(153deg) brightness(96%) contrast(92%);
+}
+
+/* ============================================ */
+/* Title Component - Figma Design System */
+/* ============================================ */
+
+.contents-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 0;
+  padding: 0;
+}
+
+.contents-title .btn {
+  width: auto;
+  flex-shrink: 0;
+}
+
+.contents-title-text {
+  color: var(--color-text-primary-a);
+  font-family: var(--font-family-pretendard);
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 48px;
+  letter-spacing: -0.2px;
+  margin: 0;
+  padding: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .title-area {
+    gap: 20px;
+    margin-bottom: 32px;
+  }
+  
+  .title-area-header {
+    gap: 12px;
+  }
+  
+  .title-area-title {
+    font-size: var(--font-size-24);
+  }
+  
+  .title-area-subtitle {
+    font-size: var(--font-size-14);
+  }
+  
+  .title-area-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  
+  .title-area-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .title-area--with-icon {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .title-area--with-icon .title-area-content {
+    align-items: center;
+  }
+  
+  .contents-breadcrumb {
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+  
+  .contents-breadcrumb-item {
+    font-size: var(--font-size-12);
+  }
+  
+  .contents-title-text {
+    font-size: var(--font-size-24);
+  }
+}
+
+@media (max-width: 480px) {
+  .title-area {
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  
+  .title-area-header {
+    gap: 8px;
+  }
+  
+  .title-area-title {
+    font-size: var(--font-size-20);
+  }
+  
+  .title-area-subtitle {
+    font-size: var(--font-size-12);
+  }
+  
+  .contents-breadcrumb {
+    gap: 4px;
+    margin-bottom: 12px;
+  }
+  
+  .contents-breadcrumb-item {
+    font-size: var(--font-size-10);
+  }
+  
+  .contents-title-text {
+    font-size: var(--font-size-20);
+  }
+}
+
+/* ============================================ */
+/* Demo Styles for title-area.html */
+/* ============================================ */
+
+body {
+  background-color: var(--neutral-900);
+  padding: 0;
+  margin: 0;
+  font-family: var(--font-family-pretendard);
+}
+
+.demo-section {
+  margin-bottom: 60px;
+  padding: 30px;
+  background-color: var(--neutral-800);
+  border-radius: var(--radius-12);
+}
+
+.demo-title {
+  color: var(--base-white);
+  font-size: var(--font-size-20);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: 20px;
+}

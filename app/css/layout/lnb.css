@@ -1,0 +1,1023 @@
+@charset "UTF-8";
+
+/* Left Navigation Bar (LNB) Component */
+/* Source: Figma Design System - LNB-AIOps Component */
+
+/* ============================================ */
+/* LNB Container */
+/* ============================================ */
+.lnb,
+.side-bar,
+#side-bar {
+    width: 240px;
+    min-height: 100vh;
+    background-color: var(--indigo-900);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 30px 20px;
+    box-sizing: border-box;
+    position: relative;
+    overflow-y: auto;
+    flex-shrink: 0;
+
+    margin: 0;           /* 모든 방향의 마진 제거 */
+    padding-left: 0px;  /* 좌측 패딩만 적용 (피그마 기준) */
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    box-sizing: border-box;
+}
+
+/* Collapsed LNB (Small version - 80px) */
+.lnb.lnb-collapsed {
+    width: 80px;
+    padding: 20px 8px;
+    align-items: center;
+}
+
+/* ============================================ */
+/* LNB Responsive Behavior */
+/* ============================================ */
+
+/* Default state (240px) - Hide icons, show text */
+.lnb-menu-icon,
+.lnb-bottom-icon,
+.lnb-list-icon {
+    display: none;
+}
+
+/* Default state - Show text */
+.lnb-menu-text,
+.lnb-bottom-text,
+.lnb-list-text {
+    display: block;
+}
+
+/* Collapsed state (80px) - Hide text, show icons */
+.lnb-collapsed .lnb-menu-text,
+.lnb-collapsed .lnb-bottom-text,
+.lnb-collapsed .lnb-list-text {
+    display: none;
+}
+
+.lnb-collapsed .lnb-menu-icon,
+.lnb-collapsed .lnb-bottom-icon,
+.lnb-collapsed .lnb-list-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+}
+
+/* Adjust menu items for collapsed mode */
+.lnb-collapsed .lnb-menu-item,
+.lnb-collapsed .lnb-list {
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-8);
+    margin: 0 auto;
+}
+
+/* Adjust bottom menu items for collapsed mode */
+.lnb-collapsed .lnb-bottom-item {
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-8);
+    margin: 0 auto;
+}
+
+/* Search area in collapsed mode */
+.lnb-collapsed .lnb-search {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    flex-shrink: 0;
+}
+
+/* Toggle button in collapsed mode */
+.lnb-collapsed .lnb-toggle-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    transition: all 0.2s ease;
+}
+
+.lnb-collapsed .lnb-toggle-btn:hover {
+    background-color: transparent;
+}
+
+/* Search wrapper in collapsed mode - show icon only */
+.lnb-collapsed .search-wrapper {
+    width: 40px !important;
+    height: 40px !important;
+    padding: 0 !important;
+    border: none !important;
+    background-color: transparent !important;
+    border-radius: 8px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+}
+
+.lnb-collapsed .search-wrapper:hover {
+    background-color: var(--color-bg-hover-lnb);
+}
+
+.lnb-collapsed .search-wrapper:active {
+    background-color: var(--color-bg-hover-lnb);
+    opacity: 0.8;
+}
+
+.lnb-collapsed .search-wrapper.search-expand-default {
+    border-color: transparent;
+}
+
+.lnb-collapsed .search-wrapper .search-field {
+    display: none !important;
+}
+
+/* Explicitly reset search wrapper to expanded mode size */
+.lnb:not(.lnb-collapsed) .search-wrapper {
+    width: 200px !important;
+    height: 40px !important;
+    padding: 0 16px !important;
+    border: 1px solid var(--color-lnb-border-rgba) !important;
+    background-color: var(--color-bg-hover-lnb) !important;
+}
+
+/* Explicitly show search field when LNB is expanded */
+.lnb:not(.lnb-collapsed) .search-wrapper .search-field {
+    display: block;
+}
+
+/* Search icon in collapsed mode */
+.lnb-collapsed .search-icon {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 20px !important;
+    height: 20px !important;
+    margin: 0 !important;
+    cursor: pointer !important;
+}
+
+
+/* Adjust bottom menu layout for collapsed mode */
+.lnb-collapsed .lnb-bottom-menu {
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+    width: 100%;
+}
+
+/* Show divider in collapsed mode */
+.lnb-collapsed .lnb-divider {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.lnb-collapsed .lnb-divider-line {
+    width: 100%;
+    height: 1px;
+    background-color: var(--color-divider-lnb);
+    flex-shrink: 0;
+}
+
+/* Menu spacing in collapsed mode */
+.lnb-collapsed .lnb-menu {
+    gap: 4px;
+    width: 100%;
+    align-items: center;
+}
+
+/* Content spacing in collapsed mode */
+.lnb-collapsed .lnb-content {
+    gap: 40px;
+    align-items: center;
+    padding: 20px 8px;
+}
+
+/* ============================================ */
+/* LNB Content */
+/* ============================================ */
+.lnb-content {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;  /* gap-[40px] - Figma exact spacing between sections */
+    width: 100%;
+    flex-shrink: 0;
+}
+
+/* ============================================ */
+/* Logo Section */
+/* ============================================ */
+.lnb-logo {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    position: relative;
+    flex-shrink: 0;
+}
+
+/* Full Logo (240px mode) */
+.lnb-logo-full {
+    max-width: 200px;
+    max-height: 50px;
+    width: auto;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
+
+/* Compact Logo (82px mode) */
+.lnb-logo-compact {
+    max-width: 42px;
+    max-height: 42px;
+    width: auto;
+    height: auto;
+    display: none;
+    object-fit: contain;
+}
+
+/* Show/hide logos based on LNB state */
+.lnb-collapsed .lnb-logo-full {
+    display: none;
+}
+
+.lnb-collapsed .lnb-logo-compact {
+    display: block;
+}
+
+/* Legacy support for text logo */
+.lnb-logo-text {
+    font-family: var(--font-family-pretendard);
+    font-size: 25.6px;
+    font-weight: 800;
+    color: var(--color-lnb-logo-text);
+    line-height: 1.3;
+    white-space: nowrap;
+    margin-left: 44px;
+    margin-top: -27px;
+}
+
+.lnb-collapsed .lnb-logo-text {
+    display: none;
+}
+
+/* ============================================ */
+/* Menu List */
+/* ============================================ */
+.lnb-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;  /* gap-[4px] - Figma exact spacing between menu items */
+    width: 100%;
+    flex-shrink: 0;
+}
+
+/* Menu Item */
+.lnb-menu-item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    padding: 10px 14px;
+    height: 40px;
+    width: 200px;
+    border-radius: var(--radius-8);
+    text-decoration: none;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    flex-shrink: 0;
+}
+
+.lnb-menu-item:hover {
+    background-color: var(--color-bg-hover-lnb);
+}
+
+.lnb-menu-item.active,
+.lnb-menu-item-active {
+    background-color: var(--color-bg-hover-lnb);
+}
+
+/* Menu Icon */
+.lnb-menu-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    color: var(--base-white);
+}
+
+.lnb-menu-item.active .lnb-menu-icon,
+.lnb-menu-item-active .lnb-menu-icon {
+    color: var(--color-text-hover-lnb);
+}
+
+/* Active state for SVG icons using currentColor */
+.lnb-menu-item.active .lnb-menu-icon svg,
+.lnb-menu-item-active .lnb-menu-icon svg {
+    color: var(--color-text-hover-lnb);
+}
+
+.lnb-menu-icon svg,
+.lnb-menu-icon img {
+    width: 100%;
+    height: 100%;
+}
+
+/* Ensure SVG icons inherit color from parent */
+.lnb-menu-icon svg {
+    fill: currentColor;
+    color: currentColor;
+}
+
+/* Ensure SVG elements inside use tags inherit color */
+.lnb-menu-icon svg use {
+    color: inherit;
+}
+
+/* Menu Text */
+.lnb-menu-text {
+    font-family: var(--typography-body-lg-family);
+    font-size: var(--typography-body-lg-size);
+    font-weight: var(--typography-body-lg-weight-semibold);
+    line-height: var(--typography-body-lg-line-height);
+    letter-spacing: var(--typography-body-lg-letter-spacing);
+    color: var(--base-white);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-shrink: 0;
+}
+
+.lnb-menu-item.active .lnb-menu-text,
+.lnb-menu-item-active .lnb-menu-text {
+    color: var(--color-text-hover-lnb);
+}
+
+/* ============================================ */
+/* Search Section */
+/* ============================================ */
+/* Search section */
+.lnb-search {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    flex-shrink: 0;
+}
+
+/* Search wrapper - Expand mode (240px) */
+.lnb-search .search-wrapper {
+    width: 200px;
+    height: 40px;
+    background-color: var(--color-bg-hover-lnb);
+    border: 1px solid var(--color-lnb-border-rgba);
+    border-radius: var(--radius-5);
+    gap: 10px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    cursor: default;
+}
+
+/* Remove hover/click effects in expanded mode */
+.lnb:not(.lnb-collapsed) .search-wrapper:hover {
+    background-color: var(--color-bg-hover-lnb);
+}
+
+.lnb:not(.lnb-collapsed) .search-wrapper:active {
+    background-color: var(--color-bg-hover-lnb);
+    opacity: 1;
+}
+
+/* Search field display in expanded mode */
+.search-field {
+    display: block;
+}
+
+/* Search field - Expand mode */
+.lnb-search .search-field {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: -0.2px;
+    color: var(--color-text-disabled);
+    opacity: 0.5;
+}
+
+.lnb-search .search-field::placeholder {
+    color: var(--color-text-disabled);
+    opacity: 0.5;
+}
+
+/* Search icon - Expand mode */
+.lnb-search .search-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    color: var(--base-white);
+    margin: 0;
+    cursor: pointer;
+}
+
+.lnb-search .search-icon svg,
+.lnb-search .search-icon img {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Ensure SVG icons inherit color from parent */
+.lnb-search .search-icon svg {
+    fill: currentColor;
+    stroke: currentColor;
+    color: currentColor;
+}
+
+/* Collapsed search - icon only (consolidated above) */
+
+/* ============================================ */
+/* LNB Divider */
+/* ============================================ */
+.lnb-divider {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    flex-shrink: 0;
+}
+
+.lnb-divider-line {
+    width: 100%;
+    height: 1px;
+    background-color: var(--color-divider-lnb);
+    flex-shrink: 0;
+}
+
+/* ============================================ */
+/* LNB Toggle Button */
+/* ============================================ */
+.lnb-toggle-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+    align-self: flex-start;
+    border-radius: var(--radius-8);
+}
+
+.lnb-toggle-btn:hover {
+    background-color: var(--color-bg-hover-lnb);
+    opacity: 0.8;
+}
+
+.lnb-toggle-btn:active {
+    opacity: 0.6;
+}
+
+.lnb-toggle-icon {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.2s ease;
+}
+
+/* Toggle button icon color */
+.lnb-toggle-btn svg {
+    color: var(--color-icon-primary);
+    fill: var(--color-icon-primary);
+}
+
+.lnb-toggle-btn svg use {
+    color: inherit;
+}
+
+/* Rotate icon when collapsed */
+.lnb-collapsed .lnb-toggle-icon {
+    transform: rotate(180deg);
+}
+
+/* ============================================ */
+/* LNB Close Button (Legacy) */
+/* ============================================ */
+.lnb-close-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    flex-shrink: 0;
+    transition: opacity 0.2s ease;
+    align-self: flex-start;
+}
+
+.lnb-close-btn:hover {
+    opacity: 0.7;
+}
+
+.lnb-close-btn:active {
+    opacity: 0.5;
+}
+
+.lnb-close-icon {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Collapsed state - show divider and close button */
+.lnb-collapsed .lnb-divider {
+    display: block;
+}
+
+.lnb-collapsed .lnb-close-btn {
+    display: none; /* Keep close button hidden, use toggle button instead */
+}
+
+/* ============================================ */
+/* Bottom Section */
+/* ============================================ */
+.lnb-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;  /* gap-[20px] - Figma exact gap */
+    align-items: center;
+    width: 100%;
+    flex-shrink: 0;
+}
+
+.lnb-bottom-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+    padding: 0 0 30px 0;  /* pb-[10px] - Figma exact padding */
+    justify-content: flex-end;
+}
+
+.lnb-bottom-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 8px;
+    height: 40px;
+    width: 208px;
+    border-radius: var(--radius-12);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    margin-bottom: -10px;
+}
+
+.lnb-bottom-item:hover {
+    background-color: var(--color-bg-hover-lnb);
+}
+
+.lnb-bottom-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    color: var(--base-white);
+}
+
+.lnb-bottom-icon svg,
+.lnb-bottom-icon img {
+    width: 100%;
+    height: 100%;
+}
+
+/* Ensure SVG icons inherit color from parent */
+.lnb-bottom-icon svg {
+    fill: currentColor;
+    color: currentColor;
+}
+
+/* Ensure SVG elements inside use tags inherit color */
+.lnb-bottom-icon svg use {
+    color: inherit;
+}
+
+.lnb-bottom-text {
+    font-family: var(--typography-body-md-family);
+    font-size: var(--typography-body-md-size);
+    font-weight: var(--typography-body-md-weight-medium);
+    line-height: 1.3;
+    color: var(--color-text-secondary);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* Collapsed bottom - icons only */
+.lnb-collapsed .lnb-bottom-menu {
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+    width: 100%;
+}
+
+.lnb-collapsed .lnb-bottom-item {
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-8);
+    margin: 0 auto;
+}
+
+.lnb-collapsed .lnb-bottom-text {
+    display: none;
+}
+
+/* ============================================ */
+/* Scrollbar */
+/* ============================================ */
+.lnb::-webkit-scrollbar {
+    width: 6px;
+}
+
+.lnb::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.lnb::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+}
+
+.lnb::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* ============================================ */
+/* Responsive */
+/* ============================================ */
+@media (max-width: 900px) {
+    .lnb,
+    .side-bar,
+    #side-bar {
+        width: 80px;
+        padding: 20px;
+    }
+
+    /* Logo switching for tablet */
+    .lnb-logo-full {
+        display: none;
+    }
+
+    .lnb-logo-compact {
+        display: block;
+    }
+
+    .lnb-logo-text {
+        display: none;
+    }
+
+    .lnb-menu-item {
+        justify-content: center;
+    }
+
+    .lnb-menu-text {
+        display: none;
+    }
+
+    /* Search - icon only for tablet */
+    .lnb-search {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .lnb-search-input {
+        width: 40px;
+        height: 40px;
+        padding: 10px;
+        justify-content: center;
+        flex: none;
+    }
+
+    .lnb-search-input input {
+        display: none;
+    }
+
+    .lnb-search-icon {
+        margin-left: 0;
+    }
+
+    .lnb-bottom-text {
+        display: none;
+    }
+
+    .lnb-bottom-item {
+        justify-content: center;
+    }
+}
+
+/* ============================================ */
+/* Sidebar Container Integration */
+/* ============================================ */
+.sidebar-container {
+    width: 100%;
+    height: 100%;
+
+    
+}
+
+/* ============================================ */
+/* LNB Demo Page Styles */
+/* ============================================ */
+
+/* Body styles for LNB demo pages */
+body.lnb-demo {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    min-height: 100vh;
+    background-color: var(--neutral-900);
+}
+
+.demo-container {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.demo-content {
+    flex: 1;
+    padding: 40px;
+    background-color: var(--neutral-900);
+}
+
+.demo-content h1 {
+    color: var(--base-white);
+    font-size: var(--typography-heading-lg-size);
+    font-weight: var(--typography-heading-lg-weight);
+    margin-bottom: 20px;
+}
+
+.demo-content h2 {
+    color: var(--base-white);
+    font-size: var(--typography-heading-sm-size);
+    font-weight: var(--typography-heading-sm-weight);
+    margin-bottom: 16px;
+}
+
+.demo-content h3 {
+    color: var(--base-white);
+    font-size: var(--typography-body-lg-size);
+    font-weight: var(--typography-body-lg-weight-semibold);
+    margin-bottom: 12px;
+}
+
+.demo-content p {
+    color: var(--neutral-400);
+    font-size: var(--typography-body-md-size);
+    line-height: 1.6;
+}
+
+.demo-content ul {
+    color: var(--neutral-400);
+    line-height: 1.8;
+}
+
+.demo-content strong {
+    color: var(--color-text-secondary);
+}
+
+.demo-content code {
+    font-family: 'Courier New', monospace;
+    background-color: var(--neutral-800);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+
+.demo-content pre {
+    color: var(--color-text-secondary);
+    font-size: 13px;
+    line-height: 1.6;
+    overflow-x: auto;
+    background-color: var(--neutral-950);
+    padding: 16px;
+    border-radius: 8px;
+}
+
+.demo-content table {
+    width: 100%;
+    color: var(--color-text-secondary);
+    border-collapse: collapse;
+}
+
+.demo-content thead tr {
+    border-bottom: 1px solid var(--neutral-700);
+}
+
+.demo-content tbody tr {
+    border-bottom: 1px solid var(--neutral-800);
+}
+
+.demo-content th,
+.demo-content td {
+    text-align: left;
+    padding: 12px;
+}
+
+.demo-content th {
+    color: var(--base-white);
+}
+
+.toggle-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: var(--color-bg-button-primary);
+    color: var(--base-white);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: var(--typography-body-md-family);
+    font-size: var(--typography-body-md-size);
+    font-weight: var(--typography-body-md-weight-medium);
+    z-index: 1000;
+    transition: background-color 0.2s ease;
+}
+
+.toggle-button:hover {
+    background-color: var(--color-bg-button-primary-hover);
+}
+
+/* ============================================ */
+/* LNB-list Component Styles */
+/* ============================================ */
+
+/* LNB-list - Default state */
+.lnb-list {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    padding: 10px 14px;
+    height: 40px;
+    width: 200px;
+    border-radius: var(--radius-8);
+    text-decoration: none;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    flex-shrink: 0;
+}
+
+/* LNB-list - Hover state */
+.lnb-list:hover {
+    background-color: var(--color-bg-hover-lnb);
+}
+
+/* LNB-list - Selected state */
+.lnb-list.lnb-list-selected {
+    background-color: var(--color-bg-hover-lnb);
+}
+
+.lnb-list.lnb-list-selected .lnb-list-icon {
+    color: var(--color-text-hover-lnb);
+}
+
+/* Active state for SVG icons using currentColor */
+.lnb-list.lnb-list-selected .lnb-list-icon svg {
+    color: var(--color-text-hover-lnb);
+}
+
+.lnb-list.lnb-list-selected .lnb-list-text {
+    color: var(--color-text-hover-lnb);
+}
+
+/* LNB-list Icon */
+.lnb-list-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    color: var(--base-white);
+}
+
+.lnb-list-icon svg,
+.lnb-list-icon img {
+    width: 100%;
+    height: 100%;
+}
+
+/* Ensure SVG icons inherit color from parent */
+.lnb-list-icon svg {
+    fill: currentColor;
+    color: currentColor;
+}
+
+/* Ensure SVG elements inside use tags inherit color */
+.lnb-list-icon svg use {
+    color: inherit;
+}
+
+/* LNB-list Text */
+.lnb-list-text {
+    font-family: var(--typography-body-lg-family);
+    font-size: var(--typography-body-lg-size);
+    font-weight: var(--typography-body-lg-weight-semibold);
+    line-height: var(--typography-body-lg-line-height);
+    letter-spacing: var(--typography-body-lg-letter-spacing);
+    color: var(--color-text-primary-a);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-shrink: 0;
+}
+
+/* ============================================ */
+/* List Component Styles (Integrated) */
+/* ============================================ */
+
+/* List Demo Styles */
+.component-container {
+    padding: 40px;
+    background-color: var(--neutral-900);
+    min-height: 100vh;
+}
+
+.component-container h2 {
+    color: var(--base-white);
+    margin-bottom: 30px;
+    font-size: var(--typography-heading-md-size);
+    font-weight: var(--typography-heading-md-weight);
+}
+
+.list-group {
+    margin-bottom: 40px;
+}
+
+.list-group h3 {
+    color: var(--base-white);
+    margin-bottom: 20px;
+    font-size: var(--typography-body-lg-size);
+    font-weight: var(--typography-body-lg-weight-semibold);
+}
+
+.list-container {
+    display: inline-flex;
+    margin-right: 20px;
+}
+
+.list-item-small.list-container {
+    width: auto;
+    flex-direction: row;
+    gap: 8px;
+}

@@ -1,0 +1,7 @@
+@charset "UTF-8";
+
+/* 
+    height로 footer 높이 정의. 
+    border는 화면 분할을 보기 위한 용도로 삭제 가능.
+*/
+.footer {height: 80px; border: 1px solid red;}

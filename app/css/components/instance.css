@@ -1,0 +1,213 @@
+/* Instance Box */
+.instance-box {
+    background-color: #1d1d1d;
+    border: 1px solid #404040;
+    border-radius: 8px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+}
+
+/* Instance Header */
+.instance-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.instance-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.instance-name {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 1.2;
+    color: #fafafa;
+    margin: 0;
+}
+
+/* Badge Styles */
+.badge {
+    border: 1px solid;
+    border-radius: 20px;
+    padding: 10px 8px;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 600;
+    font-size: 10px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 94px;
+    height: 20px;
+}
+
+.badge-active {
+    border-color: #615fff;
+    color: #A3B3FF;
+}
+
+.badge-provisioning {
+    border-color: #00bba7;
+    color: #00D5BE;
+}
+
+.badge-stopped {
+    border-color: #FF6900;
+    color: #FF6900;
+}
+
+/* Timestamp Styles */
+.instance-timestamp {
+    display: flex;
+    gap: 12px;
+}
+
+.timestamp-item {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    color: #525252;
+}
+
+.timestamp-item.active {
+    color: #fafafa;
+}
+
+/* Stats Section */
+.instance-stats {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+}
+
+.stats-card {
+    flex: 1;
+    background: linear-gradient(90deg, #27293B 0%, #27293B 100%);
+    border-radius: 8px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.stats-title {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+    color: #fafafa;
+}
+
+.stats-value {
+    display: flex;
+    align-items: flex-end;
+    gap: 4px;
+}
+
+.stats-value .value {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 56px;
+    color: #fafafa;
+}
+
+.stats-value .unit {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    color: #fafafa;
+}
+
+.stats-value .unit-total {
+    color: #525252;
+}
+
+.stats-bar {
+    background-color: #404040;
+    height: 6px;
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+.stats-bar-progress {
+    height: 100%;
+    border-radius: 30px;
+    transition: width 0.3s ease;
+}
+
+/* Instance Details */
+.instance-details {
+    display: flex;
+    gap: 30px;
+    overflow: hidden;
+}
+
+.detail-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.detail-title {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+    color: #fafafa;
+    margin: 0;
+    height: 24px;
+    display: flex;
+    align-items: center;
+}
+
+.detail-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.detail-item {
+    display: flex;
+    gap: 11px;
+    height: 20px;
+    align-items: center;
+}
+
+.detail-label {
+    width: 100px;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: #A1A1A1;
+}
+
+.detail-value {
+    width: 80px;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: #A1A1A1;
+}
+
+.detail-divider {
+    width: 1px;
+    height: 116px;
+    background-color: #404040;
+    transform: rotate(90deg);
+}

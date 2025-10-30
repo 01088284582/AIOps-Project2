@@ -1,0 +1,242 @@
+@charset "UTF-8";
+
+/* Login Page Styles */
+/* Source: Figma Design System - Login Page */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family-pretendard);
+    overflow: hidden;
+}
+
+/* Login Page Container */
+.login-page {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--neutral-900);
+    overflow: hidden;
+}
+
+/* Background Section */
+.login-bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/images/image_visual_bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.login-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('/images/background-texture.png');
+    background-repeat: repeat;
+    background-size: 134px 134px;
+    mix-blend-mode: overlay;
+    opacity: 0.3;
+}
+
+/* Visual Elements */
+.login-visual {
+    position: absolute;
+    left: -118px;
+    top: 305px;
+    width: 606px;
+    height: 461px;
+    background-image: url('/images/image_visual_1.png');
+    background-size: cover;
+    background-position: center;
+    opacity: 1;
+}
+
+/* Login Body Container */
+.login-body {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 700px;
+    min-width: 500px;
+    background-color: var(--color-icon-primary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 234px 0;
+    box-shadow: 10px 25px 35px 0px rgba(112, 85, 162, 0.1);
+}
+
+@media (min-width: 1441px) {
+    .login-body {
+        width: 50%;
+    }
+}
+
+/* Logo */
+.login-logo {
+    height: 42px;
+    width: 188px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+}
+
+.login-logo-symbol {
+    width: 53px;
+    height: 42px;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.login-logo-symbol img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.login-logo-text {
+    font-family: var(--font-family-pretendard);
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1.3;
+    color: var(--color-login-logo-text);
+    white-space: nowrap;
+    margin: 0;
+    padding: 0;
+}
+
+/* Login Contents */
+.login-contents {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 0 30px;
+}
+
+/* Google Login Button */
+.login-google-btn {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* Divider */
+.login-divider {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    padding: 20px 0;
+}
+
+.login-divider-line {
+    width: 100%;
+    height: 1px;
+    background-color: var(--color-text-tertiary);
+    opacity: 0.3;
+}
+
+.login-divider-text {
+    font-family: var(--font-family-pretendard);
+    font-size: var(--typography-body-md-size);
+    font-weight: var(--typography-body-md-weight-semibold);
+    line-height: var(--typography-body-md-line-height);
+    letter-spacing: var(--typography-body-md-letter-spacing);
+    color: var(--color-text-primary-d);
+    text-align: center;
+    margin: 12px 0;
+}
+
+/* Email Login Form */
+.login-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: flex-start;
+}
+
+.login-form-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.login-form-fields {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* Login Button */
+.login-submit-btn {
+    width: 100%;
+    height: 48px;
+    background-color: var(--color-bg-brand);
+    border: none;
+    border-radius: 5px;
+    padding: 0 32px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-submit-btn:hover {
+    background-color: var(--color-bg-button-primary);
+}
+
+.login-submit-btn-text {
+    font-family: var(--font-family-pretendard);
+    font-size: 20px;
+    font-weight: var(--typography-heading-sm-weight);
+    line-height: 1.2;
+    color: var(--color-icon-primary);
+    text-align: center;
+}
+
+/* Links */
+.login-links {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: center;
+    margin-top: 0;
+}
+
+.login-link {
+    font-family: var(--font-family-pretendard);
+    font-size: var(--typography-body-md-size);
+    font-weight: var(--typography-body-md-weight-medium);
+    line-height: var(--typography-body-md-line-height);
+    letter-spacing: var(--typography-body-md-letter-spacing);
+    color: var(--color-text-info);
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.login-link:hover {
+    color: var(--color-text-info-bold);
+}
+
+.login-link-text {
+    color: var(--neutral-900);
+}

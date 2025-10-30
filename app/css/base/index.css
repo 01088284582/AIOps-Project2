@@ -1,0 +1,6 @@
+@charset "UTF-8";
+
+/* base 폴더에 있는 css파일들 모아 한번에 html에 연결하기 위해 있는 파일 */
+@import url('../base/tokens.css');
+@import url('../base/reset.css');
+@import url('../base/global.css');

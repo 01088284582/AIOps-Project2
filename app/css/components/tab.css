@@ -1,0 +1,108 @@
+@charset "UTF-8";
+
+/* Tab Component Styles */
+/* Source: Figma Design System - Tab Components */
+
+/* Tab List Container */
+.tab-list {
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+    background-color: transparent;
+}
+
+/* Tab Item */
+.tab-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10.638px;
+    padding: 0 40px;
+    height: 50px;
+    background-color: var(--color-bg-button-secondary);
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: var(--typography-body-lg-family);
+    font-size: var(--typography-body-lg-size);
+    font-weight: var(--typography-body-lg-weight-semibold);
+    line-height: var(--typography-body-lg-line-height);
+    letter-spacing: var(--typography-body-lg-letter-spacing);
+    color: var(--neutral-400);
+    box-sizing: border-box;
+}
+
+.tab-item:hover {
+    background-color: var(--color-bg-button-secondary-hover);
+}
+
+/* Active Tab */
+.tab-item-active {
+    background-color: var(--color-bg-brand);
+    color: var(--color-text-primary-a);
+}
+
+.tab-item-active:hover {
+    background-color: var(--color-bg-brand);
+}
+
+/* Tab Text */
+.tab-text {
+    white-space: nowrap;
+}
+
+/* Tab Container (with content) */
+.tab-container {
+    width: 100%;
+}
+
+/* Tab Content Area */
+.tab-content {
+    margin-top: 20px;
+    padding: 24px;
+    background-color: var(--neutral-800);
+    border-radius: var(--radius-8);
+    min-height: 200px;
+}
+
+/* Tab Panel */
+.tab-panel {
+    display: none;
+}
+
+.tab-panel-active {
+    display: block;
+}
+
+.tab-panel p {
+    font-family: var(--typography-body-md-family);
+    font-size: var(--typography-body-md-size);
+    line-height: var(--typography-body-md-line-height);
+    color: var(--color-text-primary-a);
+}
+
+/* ============================================ */
+/* Demo Styles */
+/* ============================================ */
+.component-container {
+    padding: 40px;
+    background-color: var(--neutral-900);
+    min-height: 100vh;
+}
+
+.component-container h2 {
+    color: var(--base-white);
+    margin-bottom: 30px;
+    font-size: var(--font-size-24);
+}
+
+.tab-group {
+    margin-bottom: 40px;
+}
+
+.tab-group h3 {
+    color: var(--base-white);
+    margin-bottom: 20px;
+    font-size: var(--font-size-16);
+}
+

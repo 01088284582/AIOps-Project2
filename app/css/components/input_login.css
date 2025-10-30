@@ -1,0 +1,109 @@
+@charset "UTF-8";
+
+/* Input Login Component Styles */
+/* Source: Figma Design System - Input Login Component */
+/* Node ID: 573:5650 */
+
+/* ============================================ */
+/* Input Login Wrapper - Base Styles */
+/* ============================================ */
+.input-login {
+    border: 1px solid var(--color-text-tertiary); /* #a1a1a1 */
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    position: relative;
+    border-radius: 5px;
+    width: 400px;
+    height: 46px;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+}
+
+/* ============================================ */
+/* Input Login Field */
+/* ============================================ */
+.input-login__field {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: var(--font-family-pretendard);
+    font-size: var(--typography-body-md-size); /* 14px */
+    font-weight: var(--typography-body-md-weight-regular); /* 400 */
+    line-height: var(--typography-body-md-line-height); /* 16px */
+    letter-spacing: var(--typography-body-md-letter-spacing); /* -0.2px */
+    color: var(--color-text-tertiary); /* #a1a1a1 */
+    min-width: 0;
+    padding: 0;
+}
+
+.input-login__field::placeholder {
+    color: var(--color-text-tertiary); /* #a1a1a1 */
+    font-weight: 400;
+}
+
+/* ============================================ */
+/* Input Login States */
+/* ============================================ */
+
+/* Default State */
+.input-login--default {
+    border-color: var(--color-text-tertiary); /* #a1a1a1 */
+}
+
+.input-login--default .input-login__field {
+    color: var(--color-text-tertiary); /* #a1a1a1 */
+    font-weight: var(--typography-body-md-weight-regular); /* 400 */
+}
+
+/* Typing State */
+.input-login--typing {
+    border-color: var(--color-border-focus-ring); /* #4f39f6 */
+}
+
+.input-login--typing .input-login__field {
+    color: var(--color-text-primary-d); /* #171717 */
+    font-weight: var(--typography-body-md-weight-medium); /* 500 */
+}
+
+/* Done State */
+.input-login--done {
+    border-color: var(--color-text-tertiary); /* #a1a1a1 */
+}
+
+.input-login--done .input-login__field {
+    color: var(--color-text-primary-d); /* #171717 */
+    font-weight: var(--typography-body-md-weight-medium); /* 500 */
+}
+
+/* Disabled State */
+.input-login--disabled {
+    border-color: var(--neutral-300); /* #D4D4D4 */
+    opacity: 1;
+    cursor: not-allowed;
+}
+
+.input-login--disabled .input-login__field {
+    cursor: not-allowed;
+    color: var(--neutral-300); /* #D4D4D4 */
+    font-weight: var(--typography-body-md-weight-semibold); /* 600 */
+}
+
+/* Focus State */
+.input-login:focus-within {
+    border-color: var(--color-border-focus-ring); /* #4f39f6 */
+    outline: none;
+}
+
+/* ============================================ */
+/* Responsive Styles */
+/* ============================================ */
+@media (max-width: 768px) {
+    .input-login {
+        width: 100%;
+        max-width: 330px;
+    }
+}
+
