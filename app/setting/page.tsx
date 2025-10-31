@@ -142,7 +142,7 @@ function SettingPage() {
 
     }, []);
 
-    console.log("jnList : ", jnList);
+    //console.log("jnList : ", jnList);
 
     return(
         <>
@@ -199,7 +199,7 @@ function SettingPage() {
                                                 <div className="modal__info-value" data-name="2"
                                                      data-node-id="450:21282">
                                                     <div className="modal__info-value-content" data-node-id="450:21283">
-                                                        <span className="modal__info-value-number">6.5</span>
+                                                        <span className="modal__info-value-number">26</span>
                                                         <span className="modal__info-value-unit">GB</span>
                                                     </div>
                                                 </div>
@@ -216,7 +216,7 @@ function SettingPage() {
                                                 <div className="modal__info-value" data-name="2"
                                                      data-node-id="450:21292">
                                                     <div className="modal__info-value-content" data-node-id="450:21293">
-                                                        <span className="modal__info-value-number">150</span>
+                                                        <span className="modal__info-value-number">100</span>
                                                         <span className="modal__info-value-unit">GB</span>
                                                     </div>
                                                 </div>

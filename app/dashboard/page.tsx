@@ -86,10 +86,10 @@ function DashboardPage() {
                                     data[i].gpu_percent = data2.metrics.gpu.usage_percent;
                                     data[i].memory_percent = data2.metrics.memory.usage_percent;
                                     data[i].memory_usage = data2.metrics.memory.usage_total;
-                                    data[i].memory_tatal = data2.metrics.memory.capacity_total;
+                                    data[i].memory_total = data2.metrics.memory.capacity_total;
                                     data[i].disk_percent = data2.metrics.disk.usage_percent;
                                     data[i].disk_usage = data2.metrics.disk.usage_total;
-                                    data[i].disk_tatal = data2.metrics.disk.capacity_total;
+                                    data[i].disk_total = data2.metrics.disk.capacity_total;
 
                                     setJnList([...jnList, data[i]]);
                                 })
@@ -253,7 +253,7 @@ function DashboardPage() {
                                             <div className="stats-title">메모리 사용량</div>
                                             <div className="stats-value">
                                                 <span className="value">{item.memory_usage}</span>
-                                                <span className="unit">G<span className="unit-total">/{item.memory_tatal}G</span></span>
+                                                <span className="unit">G<span className="unit-total">/{item.memory_total}G</span></span>
                                             </div>
                                             <div className="stats-bar">
                                                 <div className="stats-bar-progress" data-color="green"
