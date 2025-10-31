@@ -3,22 +3,130 @@
 import Image from "next/image";
 import {useEffect, useState} from "react";
 import SideBar2 from "@/components/SideBar2";
-import {getNotebookInfo, getNotebookList, getPermission} from "@/lib/NotebookAPI";
+import {
+    createInstance,
+    deleteInstance,
+    getNotebookList,
+    getPermission,
+    startInstance,
+    stopInstance
+} from "@/lib/NotebookAPI";
 import {useRouter} from "next/navigation";
 import Header2 from "@/components/Header2";
+import Link from "next/link";
+
+interface JnInfo {
+    instance: string,
+    name: string,
+    state: string,
+    zone: string,
+    proxy_uri: string
+}
 
 function SettingPage() {
     const [status, setStatus] = useState<string>('loading');
-    const [jnList, setJnList] = useState<string[]>([]);
+    const [jnList, setJnList] = useState<JnInfo[]>([]);
+    const [regYn, setRegYn] = useState<boolean>(false);
+    const [instanceName, setInstanceName] = useState<string>("");
     const router = useRouter();
+
+    function openRegModal() {
+        setRegYn(true);
+    }
+
+    function registInstance() {
+        console.log("instanceName : ", instanceName);
+        setStatus('loading');
+        if(instanceName !== ""){
+            createInstance(instanceName)
+                .then((res) => {
+                    setStatus('finish');
+                    console.log("createInstance res : ", res);
+                    console.log("res.status ", res.status);
+                    console.log("res.status ", res.message);
+                    if(res.ok){
+                        initJnList();
+                    }
+                    else {
+                        if (res.status == 400){
+                            alert("영문 최대 63자, 소문자, 숫자, 하이픈(-)만 입력가능합니다.");
+                        }
+                        else if (res.status == 409){
+                            alert("한개의 인스턴스만 생성가능합니다.");
+                        }
+                        else{
+                            alert("오류가 발생했습니다.("+res.status+")");
+                        }
+                    }
+                })
+                .catch((error) => {
+                    setStatus('error');
+                    console.error("createInstance error", error)
+                });
+        }
+        setRegYn(false);
+    }
+
+    function runInstance(zone: string, name: string) {
+        setStatus('loading');
+        startInstance(zone, name)
+            .then((res) => {
+                setStatus('finish');
+                console.log("createInstance res : ", res);
+                if(res.ok){
+                    initJnList();
+                }
+            })
+    }
+
+    function downInstance(zone: string, name: string) {
+        setStatus('loading');
+        stopInstance(zone, name)
+            .then((res) => {
+                setStatus('finish');
+                console.log("downInstance res : ", res);
+                if(res.ok){
+                    initJnList();
+                }
+            })
+    }
+
+    function removeInstance(zone: string, name: string) {
+        setStatus('loading');
+        deleteInstance(zone, name)
+            .then((res) => {
+                setStatus('finish');
+                console.log("downInstance res : ", res);
+                if(res.ok){
+                    initJnList();
+                }
+            })
+    }
+
+    async function initJnList() {
+        setStatus('loading');
+        getNotebookList()
+            .then((data) =>{
+                if(data.length > 0){
+                    setJnList(data);
+                    setStatus('finish');
+                }
+                else{
+                    setStatus('nodata');
+                }
+            })
+            .catch((error) => {
+                console.error("getNotebookList error", error)
+            });
+    }
 
     useEffect(() => {
         const checkPermission = () => {
             getPermission()
                 .then((data) => {
-                    console.log("Home page getPermission data : ", data.has_permission);
+                    //console.log("Home page getPermission data : ", data.has_permission);
                     if(data.has_permission) {
-                        getData();
+                        initJnList();
                     }
                     else{
                         setStatus('no_permission');
@@ -30,47 +138,15 @@ function SettingPage() {
                 });
         };
 
-        const getData = () => {
-            getNotebookList()
-                .then((data) =>{
-                    if(data.length > 0){
-                        setStatus('finish');
-                        //console.log("getNotebookList data : ", data);
-                        for(let i=0; i<data.length; i++){
-                            const zone:string = data[i].zone;
-                            const name:string = data[i].name;
-                            console.log("getNotebookList data zone: ", zone);
-                            console.log("getNotebookList data name: ", name);
-                            getNotebookInfo(zone, name)
-                                .then((data2) =>{
-
-                                    setJnList([...jnList, data[i]]);
-                                })
-                                .catch((error) => {
-                                    console.error("getNotebookInfo error", error)
-                                });
-                        }
-
-                        setStatus('finish');
-                    }
-                    else{
-                        setStatus('nodata');
-                    }
-                })
-                .catch((error) => {
-                    console.error("getNotebookList error", error)
-                });
-        }
-
         checkPermission();
 
     }, []);
-    console.log("jnList : ", jnList);
 
+    console.log("jnList : ", jnList);
 
     return(
         <>
-            <div className="modal modal--type-02 hide" data-name="AIOps_04_인스턴스 생성" data-node-id="450:21049">
+            <div className={`modal modal--type-02 ${regYn ? "" : "hide"}`} data-name="AIOps_04_인스턴스 생성" data-node-id="450:21049">
                 <div className="modal__overlay" data-name="popup" data-node-id="450:21255">
                     <div className="modal__backdrop" data-name="dim" data-node-id="450:21256"></div>
 
@@ -78,12 +154,13 @@ function SettingPage() {
                          data-node-id="450:21257">
                         <div className="modal__popup-top" data-name="PopupTop" data-node-id="450:21258">
                             <h2 className="modal__title modal__title--lg"
-                                data-node-id="reflect:I450:21258;395:12205">타이틀 영역</h2>
+                                data-node-id="reflect:I450:21258;395:12205">인스턴스 등록</h2>
                             <button className="modal__close-btn modal__close-btn--absolute" data-name="icon_X"
-                                    data-node-id="reflect:I450:21258;395:12154" type="button" aria-label="닫기">
+                                    data-node-id="reflect:I450:21258;395:12154" type="button" aria-label="닫기"
+                                    onClick={() => setRegYn(false)}>
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="1.5"
+                                    <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="1.5"
                                           stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </button>
@@ -151,10 +228,11 @@ function SettingPage() {
                                 <div className="modal__input-section" data-name="con" data-node-id="450:21314">
                                     <div className="modal__input-wrapper" data-node-id="450:21317">
                                         <div className="input-wrapper" data-name="input" data-node-id="450:21323">
-                                            <input type="text" className="input-field" placeholder="인스턴스명을 입력해 주세요."/>
+                                            <input type="text" className="input-field" placeholder="인스턴스명을 입력해 주세요."
+                                            value={instanceName} onChange={(e) => setInstanceName(e.target.value)}/>
                                         </div>
                                         <div className="modal__input-hint" data-name="txt" data-node-id="450:21324">
-                                            <p className="modal__input-hint-text" data-node-id="450:21325">영문 최대 00자,
+                                            <p className="modal__input-hint-text" data-node-id="450:21325">영문 최대 63자,
                                                 소문자, 숫자, 하이픈(-)</p>
                                         </div>
                                     </div>
@@ -169,8 +247,8 @@ function SettingPage() {
                                      data-node-id="reflect:391:12037"></div>
                                 <div className="modal__actions modal__actions--split" data-name="CTA_Area"
                                      data-node-id="reflect:391:12218">
-                                    <button className="btn btn-secondary btn-lg" type="button">취소</button>
-                                    <button className="btn btn-primary btn-lg" type="button">확인</button>
+                                    <button className="btn btn-secondary btn-lg" type="button" onClick={() => setRegYn(false)}>취소</button>
+                                    <button className="btn btn-primary btn-lg" type="button" onClick={() => registInstance()}>확인</button>
                                 </div>
                             </div>
                         </div>
@@ -198,7 +276,7 @@ function SettingPage() {
 
                             <div className="modal__content" data-name="con" data-node-id="450:25120">
                                 <div className="modal__title-section" data-name="text" data-node-id="450:25121">
-                                    <h2 className="modal__title">인스턴스 조회 중 입니다.</h2>
+                                    <h2 className="modal__title">실행 중 입니다.</h2>
                                     <div className="modal__description" data-node-id="450:25123">
                                         <p>잠시만 기다려주세요.</p>
                                     </div>
@@ -223,7 +301,7 @@ function SettingPage() {
                                         onClick={() => router.push('/')}>
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="1.5"
+                                        <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" strokeWidth="1.5"
                                               stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
                                 </button>
@@ -261,12 +339,12 @@ function SettingPage() {
                                 <span className="contents-breadcrumb-separator">
                                     <Image src="/images/icon/icon_arrow_right.svg" alt="구분자" width={20} height={20}/>
                                 </span>
-                                <span className="contents-breadcrumb-item">Juputer 설정</span>
+                                <span className="contents-breadcrumb-item">Jupyter 설정</span>
                             </div>
 
                             <div className="contents-title">
-                                <p className="contents-title-text">Juputer 설정</p>
-                                <button className="btn btn-primary btn-md">
+                                <p className="contents-title-text">Jupyter 설정</p>
+                                <button className="btn btn-primary btn-md" onClick={() => openRegModal()}>
                                     <span className="btn-text">인스턴스 생성</span>
                                 </button>
                             </div>
@@ -310,80 +388,38 @@ function SettingPage() {
                                 </div>
 
                                 <div className="table__body">
-                                    <div className="table__row">
+                                {jnList.map((item) => (
+                                    <div className="table__row" key={item.instance}>
                                         <div className="table__cell table__cell--name">
-                                            <span className="table__cell-text">Test JupyterLab</span>
-                                            <span className="badge-status badge-status-active">ACTIVE</span>
+                                            <span className="table__cell-text">{item.name}</span>
+                                            <span className={`badge-status badge-status-${item.state == "ACTIVE" ? "active"
+                                                : item.state == "STOPPED" ? "stopped" : "provisioning"}`}>{item.state}</span>
                                         </div>
                                         <div className="table__cell table__cell--actions">
                                             <div className="table__action-item">
-                                                <button className="table__action-btn table__action-btn--start">기동
+                                                <button className={`table__action-btn table__action-btn--start ${item.state == "STOPPED" ? "" : "hide"}`}
+                                                        onClick={() => runInstance(item.zone, item.name)}>기동
                                                 </button>
                                             </div>
                                             <div className="table__action-item">
-                                                <button className="table__action-btn table__action-btn--stop">중지
+                                                <button className={`table__action-btn table__action-btn--stop ${item.state == "ACTIVE" ? "" : "hide"}`}
+                                                        onClick={() => downInstance(item.zone, item.name)}>중지
                                                 </button>
                                             </div>
                                             <div className="table__action-item">
-                                                <button className="table__action-btn table__action-btn--execute">실행
-                                                </button>
+                                                <Link href={"http://"+item.proxy_uri} target="_blank" rel="noopener noreferrer">
+                                                    <button className={`table__action-btn table__action-btn--execute ${item.state == "ACTIVE" ? "" : "hide"}`}>실행
+                                                    </button>
+                                                </Link>
                                             </div>
                                             <div className="table__action-item">
-                                                <button className="table__action-btn table__action-btn--delete">삭제
+                                                <button className={`table__action-btn table__action-btn--delete ${item.state == "STOPPED" ? "" : "hide"}`}
+                                                        onClick={() => removeInstance(item.zone, item.name)}>삭제
                                                 </button>
                                             </div>
                                         </div>
                                     </div>
-
-                                    <div className="table__row">
-                                        <div className="table__cell table__cell--name">
-                                            <span className="table__cell-text">Test JupyterLab</span>
-                                            <span className="badge-status badge-status-provisioning">PROVISIONING</span>
-                                        </div>
-                                        <div className="table__cell table__cell--actions">
-                                            <div className="table__action-item">
-                                                <button className="table__action-btn table__action-btn--start">기동
-                                                </button>
-                                            </div>
-                                            <div className="table__action-item">
-                                                <button className="table__action-btn table__action-btn--stop">중지
-                                                </button>
-                                            </div>
-                                            <div className="table__action-item">
-                                                <button className="table__action-btn table__action-btn--execute">실행
-                                                </button>
-                                            </div>
-                                            <div className="table__action-item">
-                                                <button className="table__action-btn table__action-btn--delete">삭제
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="table__row">
-                                        <div className="table__cell table__cell--name">
-                                            <span className="table__cell-text">AIOps1</span>
-                                            <span className="badge-status badge-status-stopped">STOPPED</span>
-                                        </div>
-                                        <div className="table__cell table__cell--actions">
-                                            <div className="table__action-item">
-                                                <button className="table__action-btn table__action-btn--start">기동
-                                                </button>
-                                            </div>
-                                            <div className="table__action-item">
-                                                <button className="table__action-btn table__action-btn--stop">중지
-                                                </button>
-                                            </div>
-                                            <div className="table__action-item">
-                                                <button className="table__action-btn table__action-btn--execute">실행
-                                                </button>
-                                            </div>
-                                            <div className="table__action-item">
-                                                <button className="table__action-btn table__action-btn--delete">삭제
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
+                                ))}
                                 </div>
                             </div>
                         </div>
@@ -405,7 +441,7 @@ function SettingPage() {
 
                             <div className="contents-title">
                                 <p className="contents-title-text">Juputer 설정</p>
-                                <button className="btn btn-primary btn-md">
+                                <button className="btn btn-primary btn-md" onClick={() => openRegModal()}>
                                     <span className="btn-text">인스턴스 생성</span>
                                 </button>
                             </div>
