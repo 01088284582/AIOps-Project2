@@ -18,7 +18,7 @@ interface JnInfo {
     idle_timeout_seconds : string,
     instance : string,
     memory_percent : string,
-    memory_tatal : string,
+    memory_total : string,
     memory_usage : string,
     name : string,
     notebook_instance : string,
