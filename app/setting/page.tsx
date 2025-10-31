@@ -73,7 +73,7 @@ function SettingPage() {
             .then((res) => {
                 setStatus('finish');
                 console.log("createInstance res : ", res);
-                if(res.ok){
+                if(res != null && res.ok){
                     initJnList();
                 }
             })
@@ -85,7 +85,7 @@ function SettingPage() {
             .then((res) => {
                 setStatus('finish');
                 console.log("downInstance res : ", res);
-                if(res.ok){
+                if(res != null && res.ok){
                     initJnList();
                 }
             })
@@ -97,7 +97,7 @@ function SettingPage() {
             .then((res) => {
                 setStatus('finish');
                 console.log("downInstance res : ", res);
-                if(res.ok){
+                if(res != null && res.ok){
                     initJnList();
                 }
             })
