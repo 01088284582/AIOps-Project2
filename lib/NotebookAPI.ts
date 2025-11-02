@@ -35,8 +35,8 @@ export async function getNotebookList() {
         });
 }
 
-export function getNotebookInfo(zone:string, name:string) {
-    return fetch(process.env.NEXT_PUBLIC_BACKEND_URL + '/notebooks/dashboard/gcp/'+zone+'/'+name, {
+export async function getNotebookInfo(zone:string, name:string) {
+    return await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + '/notebooks/dashboard/gcp/'+zone+'/'+name, {
         method: 'GET',
         credentials: 'include',
     })
@@ -51,3 +51,72 @@ export function getNotebookInfo(zone:string, name:string) {
         });
 }
 
+export async function createInstance(name:string) {
+    return await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + '/notebooks/create', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            "accelerator_core_count": 2,
+            "accelerator_type": "NVIDIA_TESLA_V100",
+            "data_disk_size_gb": 100,
+            "disk_size_gb": 150,
+            "enable_gpu_driver": true,
+            "machine_type": "n1-highmem-4",
+            "name": name,
+            "zone": "us-west1-b"
+        })
+    })
+        .then((res) => {
+            //console.log("createInstance() res : ", res);
+            return res;
+        })
+        .catch((error) => {
+            console.error("createInstance fetch error", error);
+            return error;
+        })
+}
+
+export async function startInstance(zone:string, name:string) {
+    return await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + '/notebooks/start/'+zone+'/'+name, {
+        method: 'POST',
+        credentials: 'include',
+    })
+        .then((res) => {
+            return res;
+        })
+        .catch((error) => {
+            console.error("getNotebookList fetch error", error);
+            return null;
+        })
+}
+
+export async function stopInstance(zone:string, name:string) {
+    return await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + '/notebooks/stop/'+zone+'/'+name, {
+        method: 'POST',
+        credentials: 'include',
+    })
+        .then((res) => {
+            return res;
+        })
+        .catch((error) => {
+            console.error("getNotebookList fetch error", error);
+            return null;
+        })
+}
+
+export async function deleteInstance(zone:string, name:string) {
+    return await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + '/notebooks/'+zone+'/'+name, {
+        method: 'DELETE',
+        credentials: 'include',
+    })
+        .then((res) => {
+            return res;
+        })
+        .catch((error) => {
+            console.error("getNotebookList fetch error", error);
+            return null;
+        })
+}

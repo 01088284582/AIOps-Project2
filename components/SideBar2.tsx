@@ -1,8 +1,7 @@
 'use client';
 
-import Link from "next/link";
 import Image from "next/image";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {googleLogout} from "@/lib/GoogleSession";
 import {useRouter} from "next/navigation";
 
@@ -87,12 +86,12 @@ function SideBar2({menu}: SideBar2Props) {
                                 <span className="lnb-menu-text">Jupyter 설정</span>
                             </a>
 
-                            <a href="#jupyter-run" className="lnb-menu-item" data-node-id="244:11654">
-                        <span className="lnb-menu-icon" data-name="Jupyter-02">
-                            <svg width="20" height="21">
-                                <use href="#icon-jupyter-run"></use>
-                            </svg>
-                        </span>
+                            <a href="#jupyter-run" className="lnb-menu-item hide" data-node-id="244:11654">
+                                <span className="lnb-menu-icon" data-name="Jupyter-02">
+                                    <svg width="20" height="21">
+                                        <use href="#icon-jupyter-run"></use>
+                                    </svg>
+                                </span>
                                 <span className="lnb-menu-text">Jupyter 실행</span>
                             </a>
                         </nav>
