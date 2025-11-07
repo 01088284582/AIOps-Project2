@@ -27,6 +27,7 @@ function SettingPage() {
     const [status, setStatus] = useState<string>('loading');
     const [jnList, setJnList] = useState<JnInfo[]>([]);
     const [regYn, setRegYn] = useState<boolean>(false);
+    const [instanceType, setInstanceType] = useState<string>("A");
     const [instanceName, setInstanceName] = useState<string>("");
     const router = useRouter();
 
@@ -35,35 +36,40 @@ function SettingPage() {
     }
 
     function registInstance() {
-        console.log("instanceName : ", instanceName);
-        setStatus('loading');
-        if(instanceName !== ""){
-            createInstance(instanceName)
-                .then((res) => {
-                    setStatus('finish');
-                    console.log("createInstance res : ", res);
-                    console.log("res.status ", res.status);
-                    console.log("res.status ", res.message);
-                    if(res.ok){
-                        initJnList();
-                    }
-                    else {
-                        if (res.status == 400){
-                            alert("영문 최대 63자, 소문자, 숫자, 하이픈(-)만 입력가능합니다.");
-                        }
-                        else if (res.status == 409){
-                            alert("한개의 인스턴스만 생성가능합니다.");
-                        }
-                        else{
-                            alert("오류가 발생했습니다.("+res.status+")");
-                        }
-                    }
-                })
-                .catch((error) => {
-                    setStatus('error');
-                    console.error("createInstance error", error)
-                });
+        //console.log("instanceName : ", instanceName);
+        //console.log("instanceType : ", instanceType);
+        if(instanceName.length == 0){
+            alert("인스턴스 명을 입력해주세요.");
+            return false;
         }
+
+        setStatus('loading');
+        createInstance(instanceName, instanceType)
+            .then((res) => {
+                setStatus('finish');
+                //console.log("createInstance res : ", res);
+                //console.log("res.status ", res.status);
+                //console.log("res.status ", res.message);
+                if(res.ok){
+                    initJnList();
+                }
+                else {
+                    if (res.status == 400){
+                        alert("영문 최대 63자, 소문자, 숫자, 하이픈(-)만 입력가능합니다.");
+                    }
+                    else if (res.status == 409){
+                        alert("한개의 인스턴스만 생성가능합니다.");
+                    }
+                    else{
+                        alert("오류가 발생했습니다.("+res.status+")");
+                    }
+                }
+            })
+            .catch((error) => {
+                setStatus('error');
+                console.error("createInstance error", error)
+            }
+        );
         setRegYn(false);
     }
 
@@ -150,74 +156,112 @@ function SettingPage() {
                 <div className="modal__overlay" data-name="popup" data-node-id="450:21255">
                     <div className="modal__backdrop" data-name="dim" data-node-id="450:21256"></div>
 
-                    <div className="modal__container modal__container--size-lg" data-name="Modal_02"
-                         data-node-id="450:21257">
+                    <div className="modal__container modal__container--size-xl" data-name="Modal_02" data-node-id="450:21257">
                         <div className="modal__popup-top" data-name="PopupTop" data-node-id="450:21258">
-                            <h2 className="modal__title modal__title--lg"
-                                data-node-id="reflect:I450:21258;395:12205">인스턴스 등록</h2>
-                            <button className="modal__close-btn modal__close-btn--absolute" data-name="icon_X"
-                                    data-node-id="reflect:I450:21258;395:12154" type="button" aria-label="닫기"
-                                    onClick={() => setRegYn(false)}>
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="1.5"
-                                          stroke-linecap="round" stroke-linejoin="round"/>
+                            <h2 className="modal__title modal__title--lg" data-node-id="reflect:I450:21258;395:12205">타이틀 영역</h2>
+                            <button className="modal__close-btn modal__close-btn--absolute" data-name="icon_X" data-node-id="reflect:I450:21258;395:12154" type="button" aria-label="닫기">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                                 </svg>
                             </button>
                         </div>
 
                         <div className="modal__popup-body" data-name="PopupBody" data-node-id="450:21259">
                             <div className="modal__popup-body-content" data-name="content" data-node-id="450:21260">
-                                <div className="modal__resource-card" data-name="con" data-node-id="450:21261">
-                                    <div className="modal__info-box" data-name="info" data-node-id="450:21265">
-                                        <div className="modal__info-header" data-name="이름" data-node-id="450:21266">
-                                            <span className="modal__info-title">EG - Tesla - T4</span>
+                                
+                                <div className="info-resourcecard-group" data-name="info_Resourcecard_02">
+                                    <div className={`info-resourcecard ${instanceType == "A" ? "info-resourcecard--selected" : ""}`} onClick={() => setInstanceType("A")}>
+                                        <div className="info-resourcecard__card">
+                                            <div className="info-resourcecard__header">
+                                                <span className="info-resourcecard__title">NVIDIA_TESLA_V100(코어 수: 2)</span>
+                                            </div>
+                                            <div className="info-resourcecard__content info-resourcecard__content--horizontal">
+                                                <div className="info-resourcecard__column">
+                                                    <div className="info-resourcecard__label">
+                                                        <span className="info-resourcecard__label-text">CPU</span>
+                                                    </div>
+                                                    <div className="info-resourcecard__value">
+                                                        <div className="info-resourcecard__value-content">
+                                                            <span className="info-resourcecard__value-number">4</span>
+                                                            <span className="info-resourcecard__value-unit">CPU</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div className="info-resourcecard__divider"></div>
+
+                                                <div className="info-resourcecard__column">
+                                                    <div className="info-resourcecard__label">
+                                                        <span className="info-resourcecard__label-text">Memory</span>
+                                                    </div>
+                                                    <div className="info-resourcecard__value">
+                                                        <div className="info-resourcecard__value-content">
+                                                            <span className="info-resourcecard__value-number">26</span>
+                                                            <span className="info-resourcecard__value-unit">GB</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div className="info-resourcecard__divider"></div>
+
+                                                <div className="info-resourcecard__column">
+                                                    <div className="info-resourcecard__label">
+                                                        <span className="info-resourcecard__label-text">Data Disk</span>
+                                                    </div>
+                                                    <div className="info-resourcecard__value">
+                                                        <div className="info-resourcecard__value-content">
+                                                            <span className="info-resourcecard__value-number">100</span>
+                                                            <span className="info-resourcecard__value-unit">GB</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div className="modal__info-content" data-node-id="450:21268">
-                                            <div className="modal__info-column" data-name="td" data-node-id="450:21269">
-                                                <div className="modal__info-label" data-name="1"
-                                                     data-node-id="450:21270">
-                                                    <span className="modal__info-label-text">CPU</span>
-                                                </div>
-                                                <div className="modal__info-value" data-name="2"
-                                                     data-node-id="450:21272">
-                                                    <div className="modal__info-value-content" data-node-id="450:21273">
-                                                        <span className="modal__info-value-number">4</span>
-                                                        <span className="modal__info-value-unit">CPU</span>
+                                    </div>
+
+                                    <div className={`info-resourcecard ${instanceType == "B" ? "info-resourcecard--selected" : ""}`} onClick={() => setInstanceType("B")}>
+                                        <div className="info-resourcecard__card">
+                                            <div className="info-resourcecard__header">
+                                                <span className="info-resourcecard__title">NVIDIA_TESLA_V100(코어 수: 4)</span>
+                                            </div>
+                                            <div className="info-resourcecard__content info-resourcecard__content--horizontal">
+                                                <div className="info-resourcecard__column">
+                                                    <div className="info-resourcecard__label">
+                                                        <span className="info-resourcecard__label-text">CPU</span>
+                                                    </div>
+                                                    <div className="info-resourcecard__value">
+                                                        <div className="info-resourcecard__value-content">
+                                                            <span className="info-resourcecard__value-number">4</span>
+                                                            <span className="info-resourcecard__value-unit">CPU</span>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                            <div className="modal__info-divider" data-name="Divider"
-                                                 data-node-id="450:21278"></div>
+                                                <div className="info-resourcecard__divider"></div>
 
-                                            <div className="modal__info-column" data-name="td" data-node-id="450:21279">
-                                                <div className="modal__info-label" data-name="1"
-                                                     data-node-id="450:21280">
-                                                    <span className="modal__info-label-text">Memory</span>
-                                                </div>
-                                                <div className="modal__info-value" data-name="2"
-                                                     data-node-id="450:21282">
-                                                    <div className="modal__info-value-content" data-node-id="450:21283">
-                                                        <span className="modal__info-value-number">26</span>
-                                                        <span className="modal__info-value-unit">GB</span>
+                                                <div className="info-resourcecard__column">
+                                                    <div className="info-resourcecard__label">
+                                                        <span className="info-resourcecard__label-text">Memory</span>
+                                                    </div>
+                                                    <div className="info-resourcecard__value">
+                                                        <div className="info-resourcecard__value-content">
+                                                            <span className="info-resourcecard__value-number">26</span>
+                                                            <span className="info-resourcecard__value-unit">GB</span>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                            <div className="modal__info-divider" data-name="Divider"
-                                                 data-node-id="450:21288"></div>
+                                                <div className="info-resourcecard__divider"></div>
 
-                                            <div className="modal__info-column" data-name="td" data-node-id="450:21289">
-                                                <div className="modal__info-label" data-name="1"
-                                                     data-node-id="450:21290">
-                                                    <span className="modal__info-label-text">Data Disk</span>
-                                                </div>
-                                                <div className="modal__info-value" data-name="2"
-                                                     data-node-id="450:21292">
-                                                    <div className="modal__info-value-content" data-node-id="450:21293">
-                                                        <span className="modal__info-value-number">100</span>
-                                                        <span className="modal__info-value-unit">GB</span>
+                                                <div className="info-resourcecard__column">
+                                                    <div className="info-resourcecard__label">
+                                                        <span className="info-resourcecard__label-text">Data Disk</span>
+                                                    </div>
+                                                    <div className="info-resourcecard__value">
+                                                        <div className="info-resourcecard__value-content">
+                                                            <span className="info-resourcecard__value-number">100</span>
+                                                            <span className="info-resourcecard__value-unit">GB</span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -229,11 +273,10 @@ function SettingPage() {
                                     <div className="modal__input-wrapper" data-node-id="450:21317">
                                         <div className="input-wrapper" data-name="input" data-node-id="450:21323">
                                             <input type="text" className="input-field" placeholder="인스턴스명을 입력해 주세요."
-                                            value={instanceName} onChange={(e) => setInstanceName(e.target.value)}/>
+                                                   value={instanceName} onChange={(e) => setInstanceName(e.target.value)}/>
                                         </div>
                                         <div className="modal__input-hint" data-name="txt" data-node-id="450:21324">
-                                            <p className="modal__input-hint-text" data-node-id="450:21325">영문 최대 63자,
-                                                소문자, 숫자, 하이픈(-)</p>
+                                            <p className="modal__input-hint-text" data-node-id="450:21325">영문 최대 00자, 소문자, 숫자, 하이픈(-)</p>
                                         </div>
                                     </div>
                                 </div>
@@ -241,18 +284,17 @@ function SettingPage() {
                         </div>
 
                         <div className="modal__popup-bottom" data-name="PopupBottom" data-node-id="reflect:391:12411">
-                            <div className="modal__popup-bottom-content" data-name="content"
-                                 data-node-id="reflect:391:12192">
-                                <div className="modal__divider" data-name="Divider"
-                                     data-node-id="reflect:391:12037"></div>
-                                <div className="modal__actions modal__actions--split" data-name="CTA_Area"
-                                     data-node-id="reflect:391:12218">
+                            <div className="modal__popup-bottom-content" data-name="content" data-node-id="reflect:391:12192">
+                                <div className="modal__divider" data-name="Divider" data-node-id="reflect:391:12037"></div>
+                                <div className="modal__actions modal__actions--split" data-name="CTA_Area" data-node-id="reflect:391:12218">
                                     <button className="btn btn-secondary btn-lg" type="button" onClick={() => setRegYn(false)}>취소</button>
                                     <button className="btn btn-primary btn-lg" type="button" onClick={() => registInstance()}>확인</button>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+
                 </div>
             </div>
 
@@ -302,7 +344,7 @@ function SettingPage() {
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
                                         <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" strokeWidth="1.5"
-                                              stroke-linecap="round" stroke-linejoin="round"/>
+                                              strokeLinecap="round" strokeLinejoin="round"/>
                                     </svg>
                                 </button>
                             </div>

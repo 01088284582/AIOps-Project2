@@ -9,17 +9,18 @@ import Header2 from "@/components/Header2";
 
 interface JnInfo {
     consumer_project_id : string,
-    cpu_percent : string,
+    cpu_percent : "0",
     create_time : string,
-    disk_percent : string,
-    disk_total : string,
-    disk_usage : string,
-    gpu_percent : string,
+    disk_percent : "0",
+    disk_total : "0",
+    disk_usage : "0",
+    gpu_percent : "0",
+    gpu_capacity_total : "0",
     idle_timeout_seconds : string,
     instance : string,
-    memory_percent : string,
-    memory_total : string,
-    memory_usage : string,
+    memory_percent : "0",
+    memory_total : "0",
+    memory_usage : "0",
     name : string,
     notebook_instance : string,
     notebook_product : string,
@@ -39,7 +40,7 @@ function DashboardPage() {
         const checkPermission = () => {
             getPermission()
                 .then((data) => {
-                    console.log("Home page getPermission data : ", data.has_permission);
+                    //console.log("Home page getPermission data : ", data.has_permission);
                     if(data.has_permission) {
                         getData();
                     }
@@ -54,15 +55,16 @@ function DashboardPage() {
         };
 
         const getData = () => {
+            setJnList([]);
             getNotebookList()
                 .then((data) =>{
                     if(data.length > 0){
                         for(let i=0; i<data.length; i++){
-                            console.log("getNotebookList data : ", data[i]);
+                            //console.log("getNotebookList data : ", data[i]);
                             const zone:string = data[i].zone;
                             const name:string = data[i].name;
-                            console.log("getNotebookList data zone: ", zone);
-                            console.log("getNotebookList data name: ", name);
+                            //console.log("getNotebookList data zone: ", zone);
+                            //console.log("getNotebookList data name: ", name);
                             getNotebookInfo(zone, name)
                                 .then((data2) =>{
                                     //time info
@@ -90,6 +92,7 @@ function DashboardPage() {
                                     data[i].disk_percent = data2.metrics.disk.usage_percent;
                                     data[i].disk_usage = data2.metrics.disk.usage_total;
                                     data[i].disk_total = data2.metrics.disk.capacity_total;
+                                    data[i].gpu_capacity_total = data2.metrics.gpu.capacity_total;
 
                                     setJnList([...jnList, data[i]]);
                                 })
@@ -208,7 +211,7 @@ function DashboardPage() {
                                 <div className="instance-box" key={item.instance}>
                                     <div className="instance-header">
                                         <div className="instance-title">
-                                            <h3 className="instance-name">{item.name}</h3>
+                                            <h3 className="instance-name">{item.name} ({item.gpu_capacity_total} GPU)</h3>
                                             <span className={`badge-status badge-status-${item.state == "ACTIVE" ? "active" 
                                                 : item.state == "STOPPED" ? "stopped" : "provisioning"}`}>{item.state}</span>
                                         </div>

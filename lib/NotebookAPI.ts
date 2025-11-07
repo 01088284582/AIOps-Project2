@@ -51,14 +51,10 @@ export async function getNotebookInfo(zone:string, name:string) {
         });
 }
 
-export async function createInstance(name:string) {
-    return await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + '/notebooks/create', {
-        method: 'POST',
-        credentials: 'include',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
+export async function createInstance(name:string, type:string) {
+    let param;
+    if(type === "A") {
+        param = {
             "accelerator_core_count": 2,
             "accelerator_type": "NVIDIA_TESLA_V100",
             "data_disk_size_gb": 100,
@@ -67,7 +63,28 @@ export async function createInstance(name:string) {
             "machine_type": "n1-highmem-4",
             "name": name,
             "zone": "us-west1-b"
-        })
+        }
+    }
+    else if(type === "B") {
+        param = {
+            "accelerator_core_count": 4,
+            "accelerator_type": "NVIDIA_TESLA_V100",
+            "data_disk_size_gb": 100,
+            "disk_size_gb": 150,
+            "enable_gpu_driver": true,
+            "machine_type": "n1-highmem-4",
+            "name": name,
+            "zone": "us-west1-b"
+        }
+    }
+
+    return await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + '/notebooks/create', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(param)
     })
         .then((res) => {
             //console.log("createInstance() res : ", res);

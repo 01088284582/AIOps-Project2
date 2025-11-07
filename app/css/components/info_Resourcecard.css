@@ -1,0 +1,230 @@
+@charset "UTF-8";
+
+/* ============================================ */
+/* Resource Card Component - BEM Methodology */
+/* ============================================ */
+
+/* Block: Resource Card Group */
+.info-resourcecard-group {
+    display: flex;
+    gap: var(--spacing-16);
+    align-items: flex-start;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+/* Block: Resource Card */
+.info-resourcecard {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Element: Card Container */
+.info-resourcecard__card {
+    width: 100%;
+    min-width: 0;
+    padding: var(--spacing-30);
+    border-radius: var(--radius-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-20);
+    background-color: var(--color-bg-box-01);
+    border: var(--stroke-weight-1) solid transparent;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+    overflow: hidden;
+}
+
+/* Modifier: Interactive Card (Case 2 & 3 only - cards inside group) */
+.info-resourcecard-group .info-resourcecard__card {
+    cursor: pointer;
+}
+
+/* Modifier: Default State (Case 2 & 3) */
+.info-resourcecard-group .info-resourcecard:not(.info-resourcecard--selected) .info-resourcecard__card {
+    background-color: var(--color-bg-tab-dim);
+    border-color: transparent;
+}
+
+/* Modifier: Hover State (Case 2 & 3 only - cards inside group, not selected) */
+.info-resourcecard-group .info-resourcecard:not(.info-resourcecard--selected):hover .info-resourcecard__card {
+    background-color: var(--color-bg-tab-dim);
+    border-color: var(--color-border-focus-ring);
+}
+
+/* Modifier: Selected State */
+.info-resourcecard--selected .info-resourcecard__card {
+    background-color: var(--color-bg-box-01);
+    border-color: var(--color-border-focus-ring);
+}
+
+/* Prevent hover overriding selected visuals */
+.info-resourcecard--selected:hover .info-resourcecard__card {
+    background-color: var(--color-bg-box-01);
+    border-color: var(--color-border-focus-ring);
+}
+
+/* Element: Header */
+.info-resourcecard__header {
+    padding: var(--spacing-12) 0;
+    background-color: var(--color-bg-button-secondary);
+    border-radius: var(--radius-5);
+    text-align: center;
+}
+
+/* Modifier: Selected Header */
+.info-resourcecard--selected .info-resourcecard__header {
+    background-color: var(--color-bg-button-primary);
+}
+
+/* Element: Title */
+.info-resourcecard__title {
+    font-family: var(--typography-body-lg-family, var(--font-family-pretendard));
+    font-size: var(--typography-body-lg-size, var(--font-size-16));
+    font-weight: var(--typography-body-lg-weight-semibold, var(--font-weight-semibold));
+    line-height: var(--typography-body-lg-line-height, var(--line-height-20));
+    color: var(--color-text-primary-a);
+    letter-spacing: var(--typography-body-lg-letter-spacing, var(--letter-spacing-0));
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Element: Content */
+.info-resourcecard__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-width: 0;
+}
+
+/* Modifier: Horizontal Layout (Case 1 & 2) */
+.info-resourcecard__content--horizontal {
+    gap: var(--spacing-30);
+    flex-direction: row;
+}
+
+/* Modifier: Vertical Layout (Case 3) */
+.info-resourcecard__content--vertical {
+    gap: var(--spacing-16);
+    flex-direction: column;
+}
+
+/* Element: Column */
+.info-resourcecard__column {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-10);
+    align-items: center;
+}
+
+/* Modifier: Vertical Layout Column */
+.info-resourcecard__content--vertical .info-resourcecard__column {
+    width: 100%;
+    align-items: flex-start;
+}
+
+/* Element: Label */
+.info-resourcecard__label {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Modifier: Vertical Layout Label */
+.info-resourcecard__content--vertical .info-resourcecard__label {
+    justify-content: flex-start;
+}
+
+/* Element: Label Text */
+.info-resourcecard__label-text {
+    font-family: var(--typography-body-md-family, var(--font-family-pretendard));
+    font-size: var(--typography-body-md-size, var(--font-size-14));
+    font-weight: var(--typography-body-md-weight-regular, var(--font-weight-regular));
+    line-height: var(--typography-body-md-line-height, var(--line-height-16));
+    color: var(--color-text-secondary);
+    letter-spacing: var(--typography-body-md-letter-spacing, var(--letter-spacing-tight));
+}
+
+/* Element: Value */
+.info-resourcecard__value {
+    height: var(--line-height-48);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Modifier: Vertical Layout Value */
+.info-resourcecard__content--vertical .info-resourcecard__value {
+    justify-content: flex-start;
+    width: 100%;
+}
+
+/* Element: Value Content */
+.info-resourcecard__value-content {
+    display: flex;
+    align-items: flex-end;
+    gap: var(--spacing-4);
+    min-width: 0;
+}
+
+/* Element: Value Number */
+.info-resourcecard__value-number {
+    font-family: var(--typography-heading-2xl-family, var(--font-family-pretendard));
+    font-size: var(--typography-heading-2xl-size, var(--font-size-40));
+    font-weight: var(--typography-heading-2xl-weight, var(--font-weight-bold));
+    line-height: var(--typography-heading-2xl-line-height, var(--line-height-48));
+    color: var(--color-text-primary-a);
+    letter-spacing: var(--typography-heading-2xl-letter-spacing, var(--letter-spacing-tight));
+    white-space: nowrap;
+}
+
+/* Element: Value Unit */
+.info-resourcecard__value-unit {
+    font-family: var(--typography-body-lg-family, var(--font-family-pretendard));
+    font-size: var(--typography-body-lg-size, var(--font-size-16));
+    font-weight: var(--typography-body-lg-weight-regular, var(--font-weight-regular));
+    line-height: var(--typography-body-lg-line-height, var(--line-height-20));
+    color: var(--color-text-tertiary);
+    letter-spacing: var(--typography-body-lg-letter-spacing, var(--letter-spacing-0));
+    padding-bottom: var(--spacing-4);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* Element: Divider (Horizontal Layout Only) */
+.info-resourcecard__divider {
+    width: var(--stroke-weight-1);
+    height: var(--line-height-48);
+    background-color: var(--neutral-700);
+    flex-shrink: 0;
+}
+
+/* ============================================ */
+/* Responsive Design */
+/* ============================================ */
+
+/* 500px 이하: 카드 그룹만 세로 배치 (카드 내부 컨텐츠는 가로 배치 유지) */
+@media (max-width: 500px) {
+    .info-resourcecard-group {
+        flex-direction: column;
+        gap: var(--spacing-16);
+        padding: 0;
+    }
+    
+    .info-resourcecard {
+        width: 100%;
+        min-width: 0;
+    }
+    
+    .info-resourcecard__card {
+        padding: var(--spacing-20);
+    }
+}
+
