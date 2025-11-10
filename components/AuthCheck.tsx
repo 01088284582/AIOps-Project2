@@ -3,6 +3,7 @@ import { useEffect} from "react";
 import { usePathname } from 'next/navigation';
 import {googleStatus} from "@/lib/GoogleSession";
 
+//로그인상태 체크
 function AuthCheck() {
     const pathname = usePathname()
     //console.log("AuthCheck pathname : ", pathname);

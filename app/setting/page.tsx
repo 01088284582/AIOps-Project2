@@ -15,6 +15,7 @@ import {useRouter} from "next/navigation";
 import Header2 from "@/components/Header2";
 import Link from "next/link";
 
+//인스턴스 등록 정보
 interface JnInfo {
     instance: string,
     name: string,
@@ -31,10 +32,14 @@ function SettingPage() {
     const [instanceName, setInstanceName] = useState<string>("");
     const router = useRouter();
 
+    //등록화면 표시
     function openRegModal() {
+        setInstanceName("");
+        setInstanceType("A");
         setRegYn(true);
     }
 
+    //인스턴스 등록 실행
     function registInstance() {
         //console.log("instanceName : ", instanceName);
         //console.log("instanceType : ", instanceType);
@@ -73,6 +78,7 @@ function SettingPage() {
         setRegYn(false);
     }
 
+    //인스턴스 기동 실행
     function runInstance(zone: string, name: string) {
         setStatus('loading');
         startInstance(zone, name)
@@ -85,6 +91,7 @@ function SettingPage() {
             })
     }
 
+    //인스턴스 중지 실행
     function downInstance(zone: string, name: string) {
         setStatus('loading');
         stopInstance(zone, name)
@@ -97,6 +104,7 @@ function SettingPage() {
             })
     }
 
+    //인스턴스 삭제 실행
     function removeInstance(zone: string, name: string) {
         setStatus('loading');
         deleteInstance(zone, name)
@@ -109,8 +117,13 @@ function SettingPage() {
             })
     }
 
+    //목록 초기화
     async function initJnList() {
         setStatus('loading');
+
+        //jnList 초기화
+        jnList.splice(0, jnList.length);
+
         getNotebookList()
             .then((data) =>{
                 if(data.length > 0){
@@ -152,6 +165,7 @@ function SettingPage() {
 
     return(
         <>
+            {/* 인스턴스 등록 DIV팝업 */}
             <div className={`modal modal--type-02 ${regYn ? "" : "hide"}`} data-name="AIOps_04_인스턴스 생성" data-node-id="450:21049">
                 <div className="modal__overlay" data-name="popup" data-node-id="450:21255">
                     <div className="modal__backdrop" data-name="dim" data-node-id="450:21256"></div>
@@ -297,6 +311,7 @@ function SettingPage() {
 
                 </div>
             </div>
+            {/* 인스턴스 등록 DIV팝업 끝*/}
 
             <SideBar2 menu="setting"/>
             {status === 'loading' ? (

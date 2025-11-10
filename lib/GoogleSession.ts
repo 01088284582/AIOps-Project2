@@ -1,5 +1,6 @@
 "use client"
 
+//백엔드로 로그아웃 요청
 export async function googleLogout() {
     await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + '/auth/logout', {
         method: 'POST',
@@ -13,6 +14,7 @@ export async function googleLogout() {
 
 }
 
+//백엔드에서 로그인 상태 체크
 export function googleStatus() {
     return fetch(process.env.NEXT_PUBLIC_BACKEND_URL + '/auth/status', {
         method: 'GET',
