@@ -7,6 +7,7 @@ import {getNotebookInfo, getNotebookList, getPermission} from "@/lib/NotebookAPI
 import {useRouter} from "next/navigation";
 import Header2 from "@/components/Header2";
 
+//대시보드 표시정보 목록
 interface JnInfo {
     consumer_project_id : string,
     cpu_percent : "0",
@@ -36,13 +37,14 @@ function DashboardPage() {
     const [jnList, setJnList] = useState<JnInfo[]>([]);
     const router = useRouter();
 
+
     useEffect(() => {
         const checkPermission = () => {
             getPermission()
                 .then((data) => {
                     //console.log("Home page getPermission data : ", data.has_permission);
                     if(data.has_permission) {
-                        getData();
+                        initJnList();
                     }
                     else{
                         setStatus('no_permission');
@@ -54,68 +56,73 @@ function DashboardPage() {
                 });
         };
 
-        const getData = () => {
-            setJnList([]);
-            getNotebookList()
-                .then((data) =>{
-                    if(data.length > 0){
-                        for(let i=0; i<data.length; i++){
-                            //console.log("getNotebookList data : ", data[i]);
-                            const zone:string = data[i].zone;
-                            const name:string = data[i].name;
-                            //console.log("getNotebookList data zone: ", zone);
-                            //console.log("getNotebookList data name: ", name);
-                            getNotebookInfo(zone, name)
-                                .then((data2) =>{
-                                    //time info
-                                    data[i].create_time = data2.create_time;
-                                    data[i].update_time = data2.update_time;
-
-                                    //labels
-                                    data[i].consumer_project_id = data2.labels.consumer_project_id;
-                                    data[i].notebook_product = data2.labels.notebooks_product;
-
-                                    //metadata
-                                    data[i].idle_timeout_seconds = data2.metadata.idle_timeout_seconds;
-                                    data[i].proxy_url = data2.metadata.proxy_url;
-                                    data[i].version = data2.metadata.version;
-
-                                    //tags
-                                    data[i].notebook_instance =  data2.tags.length > 0 ? data2.tags[0] : '-' ;
-
-                                    //usages
-                                    data[i].cpu_percent = data2.metrics.cpu.usage_percent;
-                                    data[i].gpu_percent = data2.metrics.gpu.usage_percent;
-                                    data[i].memory_percent = data2.metrics.memory.usage_percent;
-                                    data[i].memory_usage = data2.metrics.memory.usage_total;
-                                    data[i].memory_total = data2.metrics.memory.capacity_total;
-                                    data[i].disk_percent = data2.metrics.disk.usage_percent;
-                                    data[i].disk_usage = data2.metrics.disk.usage_total;
-                                    data[i].disk_total = data2.metrics.disk.capacity_total;
-                                    data[i].gpu_capacity_total = data2.metrics.gpu.capacity_total;
-
-                                    setJnList([...jnList, data[i]]);
-                                })
-                                .catch((error) => {
-                                    console.error("getNotebookInfo error", error)
-                                });
-                        }
-                        setStatus('finish');
-                    }
-                    else{
-                        setStatus('nodata');
-                    }
-                })
-                .catch((error) => {
-                    setStatus('error');
-                    console.error("getNotebookList error", error)
-                });
-        }
-
         checkPermission();
-
     }, []);
     //console.log("jnList : ", jnList);
+
+    //인스턴스 별 목록정보 조회 및 표시 > 현재는 인스턴스 1개만 생성가능
+    async function initJnList() {
+        setStatus('loading');
+
+        //jnList 초기화
+        jnList.splice(0, jnList.length);
+
+        //목록 조회
+        getNotebookList()
+            .then((data) =>{
+                if(data.length > 0){
+                    for(let i=0; i<data.length; i++){
+                        const zone:string = data[i].zone;
+                        const name:string = data[i].name;
+
+                        //상세정보 조회
+                        getNotebookInfo(zone, name)
+                            .then((data2) =>{
+                                //time info
+                                data[i].create_time = data2.create_time;
+                                data[i].update_time = data2.update_time;
+
+                                //labels
+                                data[i].consumer_project_id = data2.labels.consumer_project_id;
+                                data[i].notebook_product = data2.labels.notebooks_product;
+
+                                //metadata
+                                data[i].idle_timeout_seconds = data2.metadata.idle_timeout_seconds;
+                                data[i].proxy_url = data2.metadata.proxy_url;
+                                data[i].version = data2.metadata.version;
+
+                                //tags
+                                data[i].notebook_instance =  data2.tags.length > 0 ? data2.tags[0] : '-' ;
+
+                                //usages
+                                data[i].cpu_percent = data2.metrics.cpu.usage_percent;
+                                data[i].gpu_percent = data2.metrics.gpu.usage_percent;
+                                data[i].memory_percent = data2.metrics.memory.usage_percent;
+                                data[i].memory_usage = data2.metrics.memory.usage_total;
+                                data[i].memory_total = data2.metrics.memory.capacity_total;
+                                data[i].disk_percent = data2.metrics.disk.usage_percent;
+                                data[i].disk_usage = data2.metrics.disk.usage_total;
+                                data[i].disk_total = data2.metrics.disk.capacity_total;
+                                data[i].gpu_capacity_total = data2.metrics.gpu.capacity_total;
+
+                                setJnList([...jnList, data[i]]);
+                            })
+                            .catch((error) => {
+                                console.error("getNotebookInfo error", error)
+                            });
+                    }
+                    setStatus('finish');
+                }
+                else{
+                    setStatus('nodata');
+                }
+            })
+            .catch((error) => {
+                setStatus('error');
+                console.error("getNotebookList error", error)
+            });
+
+    }
 
     return (
         <>
@@ -200,7 +207,7 @@ function DashboardPage() {
 
                             <div className="contents-title">
                                 <p className="contents-title-text">Dashboards</p>
-                                <button className="btn btn-primary btn-md hide">
+                                <button className="btn btn-primary btn-md hide" onClick={() => initJnList()}>
                                     <span className="btn-text">새로고침</span>
                                 </button>
                             </div>
