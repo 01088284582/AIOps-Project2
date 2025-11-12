@@ -50,14 +50,26 @@ body {
 /* Visual Elements */
 .login-visual {
     position: absolute;
-    left: -118px;
-    top: 305px;
-    width: 606px;
-    height: 461px;
-    background-image: url('/images/image_visual_1.png');
-    background-size: cover;
+    left: calc((100% - 700px) / 2);
+    top: calc(100% * 2 / 3);
+    transform: translate(-50%, -50%);
+    width: calc((100% - 700px) * 0.7);
+    aspect-ratio: 606 / 461;
+    max-width: 666.6px;
+    min-width: 500px;
+    background-image: url('/images/mainvisual.png');
+    background-size: contain;
     background-position: center;
+    background-repeat: no-repeat;
     opacity: 1;
+}
+
+@media (min-width: 1441px) {
+    .login-visual {
+        left: 25%;
+        width: 30%;
+        max-width: 666.6px;
+    }
 }
 
 /* Login Body Container */
@@ -240,3 +252,4 @@ body {
 .login-link-text {
     color: var(--neutral-900);
 }
+
